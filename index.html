@@ -35,24 +35,21 @@
         ::-webkit-scrollbar-thumb { background: var(--primary); }
 
         /* ---- COMPONENTS ---- */
-        .btn-white {
-            background: white; color: black; padding: 14px 30px; font-family: var(--font-sub); font-size: 1.4rem; font-weight: 700;
-            text-transform: uppercase; text-decoration: none; border-radius: 4px; cursor: pointer; transition: 0.3s; line-height: 1; display: inline-flex; align-items: center; justify-content: center; border: none;
-        }
-        .btn-white:hover { transform: translateY(-3px); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
-        
-        .btn-dark {
-            background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2);
-            padding: 14px 30px; font-family: var(--font-sub); font-size: 1.4rem; font-weight: 700;
+        .btn-white, .btn-dark {
+            padding: 12px 30px; font-family: var(--font-sub); font-size: 1.4rem; font-weight: 700;
             text-transform: uppercase; text-decoration: none; border-radius: 4px; cursor: pointer; transition: 0.3s; line-height: 1; display: inline-flex; align-items: center; justify-content: center;
         }
+        .btn-white { background: white; color: black; border: none; }
+        .btn-white:hover { transform: translateY(-3px); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+        
+        .btn-dark { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
         .btn-dark:hover { border-color: var(--primary); color: var(--primary); }
 
         /* ---- NAV ---- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 5%; position: fixed; width: 100%; top: 0; z-index: 1000;
-            background: rgba(0,0,0,0.95); border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
         .logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; white-space: nowrap; }
@@ -67,51 +64,44 @@
         .sponsor-btn { background: var(--primary); color: black; padding: 5px 15px; border-radius: 4px; font-weight: 800; font-size: 1.2rem; font-family: var(--font-sub); text-transform: uppercase; border: none; cursor: pointer; }
         .menu-toggle { display: none; font-size: 1.5rem; color: white; cursor: pointer; margin-left: 15px; }
 
-        /* ---- HERO SECTION (EXACT MATCH) ---- */
+        /* ---- HERO SECTION (FIXED BG OPACITY) ---- */
         .hero {
             min-height: 100vh; display: flex; align-items: center; padding: 0 5%;
             position: relative; overflow: hidden;
-            background-color: #000; /* Pure Black Base */
+            background-size: cover; background-position: center;
+            background-color: #000;
         }
-        /* Background Image with Dark Overlay */
-        .hero-bg {
-            position: absolute; top: 0; right: 0; width: 100%; height: 100%;
-            background: url('https://wallpapers.com/images/hd/dark-gaming-background-1920-x-1080-87-hd-wallpaper-g138v4j5y5z4j5n6.jpg') no-repeat center;
-            background-size: cover; opacity: 0.4; z-index: 0;
-        }
-        .hero::after {
+        
+        /* FIX: এখানে opacity কমানো হয়েছে যাতে পেছনের ছবি দেখা যায় */
+        .hero::before {
             content:''; position: absolute; top:0; left:0; width:100%; height:100%;
-            background: linear-gradient(to right, #000 30%, rgba(0,0,0,0.3) 100%);
+            /* বামে ৯০% কালো (পুরো কালো না) এবং ডানে ৩০% কালো */
+            background: linear-gradient(to right, rgba(0,0,0,80) 0%, rgba(0,0,0,0.5) 100%);
             z-index: 1;
         }
 
-        .hero-content { position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding-top: 80px;}
-        .hero-text { max-width: 750px; }
+        .hero-content { position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding-top: 60px;}
+        .hero-text { max-width: 700px; }
 
-        .badge { 
-            background: rgba(204, 255, 0, 0.1); color: var(--primary); padding: 6px 12px; 
-            border-radius: 4px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; 
-            display: inline-block; margin-bottom: 20px; letter-spacing: 1px; 
-            font-family: var(--font-sub); border: 1px solid rgba(204, 255, 0, 0.2); 
-        }
+        .badge { background: rgba(204, 255, 0, 0.15); color: var(--primary); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; display: inline-block; margin-bottom: 15px; letter-spacing: 1px; font-family: var(--font-sub); border: 1px solid rgba(204, 255, 0, 0.3); }
         
         .hero h1 {
-            font-family: var(--font-main); font-size: 7rem; line-height: 0.85;
-            color: white; text-transform: uppercase; margin-bottom: 25px;
+            font-family: var(--font-main); font-size: 6.5rem; line-height: 0.85;
+            color: white; text-transform: uppercase; margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5); /* টেক্সট যাতে ব্যাকগ্রাউন্ডের উপর ভাসে */
         }
         .hero h1 span { color: var(--primary); }
         
-        .hero p { color: #888; font-size: 1.1rem; max-width: 550px; margin-bottom: 40px; line-height: 1.6; }
+        .hero p { color: #ccc; font-size: 1.1rem; max-width: 500px; margin-bottom: 30px; line-height: 1.6; text-shadow: 0 0 5px rgba(0,0,0,0.8); }
         .hero-btns { display: flex; gap: 15px; }
 
-        /* Floating Stats Card */
         .stats-card {
-            background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1); padding: 25px 50px; border-radius: 12px;
-            display: flex; gap: 50px; border-right: 4px solid var(--primary);
+            background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1); padding: 20px 40px; border-radius: 12px;
+            display: flex; gap: 40px; border-right: 4px solid var(--primary);
         }
-        .sc-item h3 { font-family: var(--font-main); font-size: 3rem; color: var(--primary); margin: 0; line-height: 1; }
-        .sc-item p { font-size: 0.75rem; color: #aaa; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; font-weight: bold; }
+        .sc-item h3 { font-family: var(--font-head); font-size: 2.5rem; color: var(--primary); margin: 0; line-height: 1; }
+        .sc-item p { font-size: 0.7rem; color: #aaa; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; font-weight: bold; }
 
         /* ---- SECTIONS ---- */
         section { padding: 80px 5%; border-bottom: 1px solid #111; }
@@ -121,26 +111,27 @@
 
         /* ---- ROSTER ---- */
         .roster-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-        .player-card { 
-            background: #121212; border-radius: 8px; overflow: hidden; position: relative; 
-            border: 1px solid #222; height: 380px; transition: 0.3s; cursor: pointer; 
-        }
-        .player-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 0 20px rgba(204,255,0,0.15); }
+        .player-card { background: #121212; border-radius: 8px; overflow: hidden; position: relative; border: 1px solid #1f1f1f; height: 350px; transition: 0.3s; cursor: pointer; }
+        .player-card:hover { border-color: var(--primary); transform: translateY(-5px); }
         
-        .p-icon { position: absolute; top: 15px; left: 15px; color: var(--primary); font-size: 1.2rem; z-index: 2; }
-        .p-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0%); transition: 0.4s; } /* No Grayscale */
+        /* IMAGE FIX */
+        .p-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0%); transition: 0.4s; }
         .player-card:hover .p-img { transform: scale(1.05); }
         
-        .p-info { 
-            position: absolute; bottom: 0; width: 100%; padding: 20px; 
-            background: linear-gradient(to top, #000 70%, transparent); 
-        }
-        .p-name { font-family: var(--font-main); font-size: 2rem; color: white; margin-bottom: 5px; text-transform: uppercase; line-height: 1; }
+        .p-info { position: absolute; bottom: 0; width: 100%; padding: 15px; background: linear-gradient(to top, #000 70%, transparent); }
+        .p-name { font-family: var(--font-main); font-size: 1.8rem; color: white; margin-bottom: 5px; text-transform: uppercase; line-height: 1; }
         .p-role { color: var(--primary); font-size: 0.9rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
         
+        .view-btn {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8);
+            background: var(--primary); color: black; padding: 10px 20px; font-family: var(--font-sub); 
+            font-size: 1.2rem; font-weight: bold; opacity: 0; transition: 0.3s; text-transform: uppercase;
+        }
+        .player-card:hover .view-btn { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
         /* ---- GREEN STATS BAR ---- */
-        .global-stats { background: var(--primary); padding: 60px 5%; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; text-align: center; }
-        .gs-item h2 { font-family: var(--font-main); font-size: 4rem; color: black; margin: 0; line-height: 1; }
+        .global-stats { background: var(--primary); padding: 50px 5%; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; text-align: center; }
+        .gs-item h2 { font-family: var(--font-main); font-size: 3.5rem; color: black; margin: 0; line-height: 1; }
         .gs-item p { color: black; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
 
         /* ---- OTHER GRIDS ---- */
@@ -150,6 +141,9 @@
         .vid-thumb iframe { width: 100%; height: 100%; border: none; }
         .vid-info { padding: 15px; }
         .vid-title { font-family: var(--font-main); font-size: 1.2rem; margin: 0; text-transform: uppercase; }
+        
+        .gal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .gal-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; border: 1px solid #222; }
 
         /* ---- ADMIN ---- */
         #admin-view { display: none; background: #050505; min-height: 100vh; padding: 20px; }
@@ -184,14 +178,14 @@
             nav { padding: 15px 5%; }
             .nav-menu { display: none; } 
             .menu-toggle { display: block; }
-            .sponsor-btn { display: none; } /* Mobile Menu te jabe */
+            .sponsor-btn { display: none; } 
             
             .mobile-nav { display: none; position: fixed; top: 60px; right: 0; width: 100%; background: #0a0a0a; padding: 20px; border-bottom: 1px solid var(--primary); z-index: 998; text-align: center; }
             .mobile-nav a { display: block; color: white; padding: 15px 0; font-family: var(--font-main); text-decoration: none; font-size: 1.5rem; border-bottom: 1px solid #222; }
 
             .hero { align-items: center; justify-content: center; text-align: left; padding-top: 80px; }
             .hero-content { flex-direction: column; align-items: flex-start; }
-            .hero h1 { font-size: 14vw; line-height: 0.9; margin-bottom: 15px; }
+            .hero h1 { font-size: 13vw; line-height: 0.9; margin-bottom: 15px; }
             .hero-btns { flex-direction: column; width: 100%; }
             .btn-white, .btn-dark { width: 100%; justify-content: center; }
 
@@ -222,6 +216,7 @@
             </div>
             
             <div style="display:flex; align-items:center;">
+                <!-- SPONSOR BUTTON -->
                 <button class="sponsor-btn" onclick="toggleSponsor()">SPONSOR US</button>
                 <div class="menu-toggle" onclick="toggleMobile()"><i class="fas fa-bars"></i></div>
             </div>
@@ -240,8 +235,8 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <div class="badge">OFFICIAL SQUAD WEBSITE</div>
-                    <h1>WE TRUST ON <br> OUR <br> <span>MINDSET</span></h1>
-                    <p>Welcome to the home of Bangla Victorians. A premier Free Fire esports squad dedicated to precision, teamwork, and absolute victory.They try to dominant </p>
+                    <h1>DOMINATING <br> THE <br> <span>BATTLEFIELD</span></h1>
+                    <p>Welcome to the home of Bangla Victorians. A premier Free Fire e-sports squad dedicated to precision, teamwork, and absolute victory.</p>
                     <div class="hero-btns">
                         <a href="#roster" class="btn-white">VIEW ROSTER <i class="fas fa-arrow-right" style="margin-left:5px"></i></a>
                         <a href="#highlight" class="btn-dark">WATCH HIGHLIGHTS</a>
@@ -262,7 +257,7 @@
             <div class="roster-grid" id="roster-list"><p style="color:#666">Loading...</p></div>
         </section>
 
-        <!-- GREEN STATS BAR -->
+        <!-- DYNAMIC GREEN STATS BAR -->
         <div class="global-stats">
             <div class="gs-item"><h2 id="stat-rank">#01</h2><p>Regional Rank</p></div>
             <div class="gs-item"><h2 id="stat-matches">150+</h2><p>Matches</p></div>
@@ -278,6 +273,11 @@
         <section id="news">
             <div class="section-header"><h2>TEAM <span>NEWS</span></h2></div>
             <div class="vid-grid" id="news-list" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));"></div>
+        </section>
+
+        <section id="media">
+            <div class="section-header"><h2>SQUAD <span>GALLERY</span></h2></div>
+            <div class="gal-grid" id="gallery-list"></div>
         </section>
 
         <section id="contact">
@@ -311,6 +311,8 @@
             <button class="tab-btn" onclick="tab('ros')">ROSTER</button>
             <button class="tab-btn" onclick="tab('new')">NEWS</button>
             <button class="tab-btn" onclick="tab('vid')">VIDEOS</button>
+            <button class="tab-btn" onclick="tab('gal')">GALLERY</button>
+            <button class="tab-btn" onclick="tab('fan')">FANS</button>
             <button class="tab-btn" onclick="tab('spon')">SPONSORS</button>
         </div>
 
@@ -318,18 +320,18 @@
         <div id="set" class="adm-section active">
             <div class="form-box">
                 <h3 style="color:var(--primary); margin-bottom:15px;">THEME</h3>
-                <label style="color:#888">Hero Background URL</label>
-                <input type="text" id="cfg-bg" placeholder="Image Link...">
+                <label style="color:#888">Hero Background URL / Gradient</label>
+                <input type="text" id="cfg-bg" placeholder="Image Link or CSS Color...">
                 <button class="btn-adm" onclick="saveConfig()">APPLY BG</button>
             </div>
 
             <div class="form-box">
                 <h3 style="color:var(--primary); margin-bottom:15px;">SQUAD STATS</h3>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-                    <input type="text" id="cfg-rank" placeholder="Rank">
-                    <input type="text" id="cfg-matches" placeholder="Matches">
-                    <input type="text" id="cfg-win" placeholder="Win Rate">
-                    <input type="text" id="cfg-titles" placeholder="Titles">
+                    <input type="text" id="cfg-rank" placeholder="Rank (e.g. #01)">
+                    <input type="text" id="cfg-matches" placeholder="Matches (e.g. 150+)">
+                    <input type="text" id="cfg-win" placeholder="Win Rate (e.g. 85%)">
+                    <input type="text" id="cfg-titles" placeholder="Titles (e.g. 12)">
                 </div>
                 <button class="btn-adm" onclick="saveStats()">UPDATE STATS</button>
             </div>
@@ -338,12 +340,12 @@
         <!-- ROSTER -->
         <div id="ros" class="adm-section">
             <div class="form-box">
-                <h3 style="color:var(--primary);">ADD PLAYER</h3>
+                <h3 style="color:var(--primary);">ADD / EDIT PLAYER</h3>
                 <input type="hidden" id="p-id">
                 <input type="text" id="p-img" placeholder="Main Card Image URL (Full Body)">
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
                     <input type="text" id="p-name" placeholder="Real Name">
-                    <input type="text" id="p-ign" placeholder="IGN">
+                    <input type="text" id="p-ign" placeholder="In-Game Name (IGN)">
                     <input type="text" id="p-role" placeholder="Role">
                     <input type="text" id="p-uid" placeholder="UID">
                     <input type="text" id="p-age" placeholder="Age">
@@ -360,7 +362,7 @@
             <div id="adm-roster"></div>
         </div>
 
-        <!-- NEWS & VIDEOS -->
+        <!-- NEWS, VIDEO, FANS -->
         <div id="new" class="adm-section">
             <div class="form-box">
                 <input type="hidden" id="n-id">
@@ -379,6 +381,14 @@
             </div>
             <div id="adm-video"></div>
         </div>
+        <div id="gal" class="adm-section">
+            <div class="form-box">
+                <input type="text" id="g-url" placeholder="Image URL">
+                <button class="btn-adm" onclick="saveImage()">ADD IMAGE</button>
+            </div>
+            <div id="adm-gallery"></div>
+        </div>
+        <div id="fan" class="adm-section"><div id="adm-fans"></div></div>
         
         <!-- SPONSOR REQUESTS -->
         <div id="spon" class="adm-section">
@@ -466,8 +476,9 @@
         window.tab = (id) => { document.querySelectorAll('.adm-section').forEach(e=>e.classList.remove('active')); document.getElementById(id).classList.add('active'); }
         let players = [];
 
-        // CONFIG
+        // CONFIG (HERO BG & STATS)
         async function loadConfig() {
+            // BG
             const snap = await getDoc(doc(db,"settings","config"));
             if(snap.exists()) {
                 const d = snap.data();
@@ -476,6 +487,7 @@
                 hero.style.backgroundSize = 'cover'; hero.style.backgroundPosition = 'center';
                 if(document.getElementById('cfg-bg')) document.getElementById('cfg-bg').value = d.bg;
             }
+            // STATS
             const sSnap = await getDoc(doc(db,"settings","stats"));
             if(sSnap.exists()) {
                 const s = sSnap.data();
@@ -500,7 +512,7 @@
         // SPONSOR
         window.submitSponsor = async () => {
             const n=document.getElementById('s-name').value, e=document.getElementById('s-email').value, w=document.getElementById('s-wp').value, d=document.getElementById('s-desc').value;
-            if(n && w) { await addDoc(collection(db, "sponsors"), {name: n, email: e, whatsapp: w, desc: d, time: Date.now()}); alert("Request Sent!"); toggleSponsor(); } else { alert("Fill Name & WhatsApp."); }
+            if(n && w) { await addDoc(collection(db, "sponsors"), {name: n, email: e, whatsapp: w, desc: d, time: Date.now()}); alert("Request Sent! Admin will contact you."); toggleSponsor(); } else { alert("Fill Name & WhatsApp."); }
         }
 
         // AUTH & LOADERS
@@ -539,30 +551,44 @@
             await addDoc(collection(db,"videos"),{title:document.getElementById('v-title').value, url:`https://www.youtube.com/embed/${vid}`, time:Date.now()});
             alert("Added"); loadData();
         }
+        window.saveImage = async () => { await addDoc(collection(db,"gallery"),{url:document.getElementById('g-url').value, time:Date.now()}); alert("Added"); loadData(); }
         window.postComment = async () => { const n=document.getElementById('c-name').value, m=document.getElementById('c-msg').value; if(n&&m){ await addDoc(collection(db,"comments"),{name:n, msg:m, time:Date.now()}); loadData(); document.getElementById('c-msg').value=""; } }
         window.delItem = async (c,i) => { if(confirm("Delete?")){ await deleteDoc(doc(db,c,i)); loadData(); } }
 
         async function loadData() {
+            // Roster
             const s1=await getDocs(query(collection(db,"roster"), orderBy("time","asc")));
             let h1="", a1=""; players=[];
             s1.forEach(d=>{ const v=d.data(); players.push(v); const i=players.length-1;
-                h1+=`<div class="player-card" onclick="openP(${i})"><div class="p-icon"><i class="fas fa-shield-alt"></i></div><img src="${v.img}" class="p-img"><div class="p-info"><span class="p-role">${v.role}</span><h3 class="p-name">${v.name}</h3><div class="p-stats"><div class="ps-item"><span>K/D</span><b>${v.kd||'N/A'}</b></div><div class="ps-item"><span>WIN</span><b>${v.win||'N/A'}</b></div></div></div></div>`;
+                h1+=`<div class="player-card" onclick="openP(${i})">
+                        <div class="p-icon"><i class="fas fa-shield-alt"></i></div><img src="${v.img}" class="p-img"><div class="p-info"><span class="p-role">${v.role}</span><h3 class="p-name">${v.name}</h3><div class="p-stats"><div class="ps-item"><span>K/D</span><b>${v.kd||'N/A'}</b></div><div class="ps-item"><span>WIN</span><b>${v.win||'N/A'}</b></div></div></div>
+                        <div class="view-btn">VIEW DETAILS</div>
+                     </div>`;
                 a1+=`<div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #333; color:white;"><span>${v.name}</span><div><button onclick="editP('${d.id}','${encodeURIComponent(JSON.stringify(v))}')" style="color:var(--primary); background:none; border:none; cursor:pointer;">EDIT</button> <button onclick="delItem('roster','${d.id}')" style="color:red; background:none; border:none; cursor:pointer;">DEL</button></div></div>`;
             });
             document.getElementById('roster-list').innerHTML=h1; if(document.getElementById('adm-roster')) document.getElementById('adm-roster').innerHTML=a1;
 
+            // News
             const s2=await getDocs(query(collection(db,"blogs"), orderBy("time","desc")));
             let h2="", a2=""; s2.forEach(d=>{ const v=d.data(); h2+=`<div class="vid-card"><div class="vid-thumb"><img src="${v.img}" style="width:100%;height:100%;object-fit:cover;"></div><div class="vid-info"><div class="vid-meta" style="color:var(--primary)">${v.date}</div><h4 class="vid-title" style="color:white">${v.title}</h4></div></div>`; a2+=`<div style="padding:10px; color:white; border-bottom:1px solid #222;">${v.title} <button onclick="delItem('blogs','${d.id}')" style="color:red; float:right; background:none; border:none;">DEL</button></div>`; });
             document.getElementById('news-list').innerHTML=h2; if(document.getElementById('adm-news')) document.getElementById('adm-news').innerHTML=a2;
 
+            // Video
             const s3=await getDocs(query(collection(db,"videos"), orderBy("time","desc")));
             let h3="", a3=""; s3.forEach(d=>{ h3+=`<div class="vid-card"><div class="vid-thumb"><iframe src="${d.data().url}" allowfullscreen></iframe></div><div class="vid-info"><h4 class="vid-title" style="color:white">${d.data().title}</h4></div></div>`; a3+=`<div style="padding:10px; color:white; border-bottom:1px solid #222;">${d.data().title} <button onclick="delItem('videos','${d.id}')" style="color:red; float:right; background:none; border:none;">DEL</button></div>`; });
             document.getElementById('video-list').innerHTML=h3; if(document.getElementById('adm-video')) document.getElementById('adm-video').innerHTML=a3;
 
-            const s5=await getDocs(query(collection(db,"comments"), orderBy("time","desc")));
-            let h5=""; s5.forEach(d=>{ h5+=`<div style="border-bottom:1px solid #222; padding:10px;"><strong style="color:var(--primary)">${d.data().name}</strong><p style="color:#aaa; margin-top:5px;">${d.data().msg}</p></div>`; });
-            document.getElementById('comm-list').innerHTML=h5;
+            // Gallery
+            const s4=await getDocs(query(collection(db,"gallery"), orderBy("time","desc")));
+            let h4="", a4=""; s4.forEach(d=>{ h4+=`<img src="${d.data().url}" class="gal-img">`; a4+=`<div style="padding:10px; color:white; border-bottom:1px solid #222;">Image <button onclick="delItem('gallery','${d.id}')" style="color:red; float:right; background:none; border:none;">DEL</button></div>`; });
+            document.getElementById('gallery-list').innerHTML=h4; if(document.getElementById('adm-gallery')) document.getElementById('adm-gallery').innerHTML=a4;
 
+            // Fans
+            const s5=await getDocs(query(collection(db,"comments"), orderBy("time","desc")));
+            let h5="", a5=""; s5.forEach(d=>{ h5+=`<div style="border-bottom:1px solid #222; padding:10px;"><strong style="color:var(--primary)">${d.data().name}</strong><p style="color:#aaa; margin-top:5px;">${d.data().msg}</p></div>`; a5+=`<div style="padding:10px; color:white; border-bottom:1px solid #222;">${d.data().name}: ${d.data().msg} <button onclick="delItem('comments','${d.id}')" style="color:red; float:right; background:none; border:none;">DEL</button></div>`; });
+            document.getElementById('comm-list').innerHTML=h5; if(document.getElementById('adm-fans')) document.getElementById('adm-fans').innerHTML=a5;
+
+            // Sponsors
             const s6=await getDocs(query(collection(db,"sponsors"), orderBy("time","desc")));
             let a6=""; s6.forEach(d=>{ const v=d.data(); a6+=`<div style="background:#151515; padding:15px; margin-bottom:10px; border-left:3px solid var(--primary);"><h4 style="color:white; margin:0;">${v.name}</h4><p style="color:#aaa; font-size:0.9rem; margin:5px 0;">${v.desc}</p><small style="color:#666;">${v.email} | ${v.whatsapp}</small> <button onclick="delItem('sponsors','${d.id}')" style="color:red; float:right; background:none; border:none; cursor:pointer;">DEL</button></div>`; });
             if(document.getElementById('adm-sponsors')) document.getElementById('adm-sponsors').innerHTML=a6;
