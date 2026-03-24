@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangla Victorians - Official Free Fire Esports Site</title>
+    
+    <!-- SEO & Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Teko:wght@400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- USER VIEW -->
+    <div id="user-view">
+        <nav>
+            <div class="logo-area" onclick="toggleLogin()" style="cursor:pointer;">
+                <img src="logo.png" alt="Logo" class="nav-logo-img">
+                <div class="logo-text">BANGLA <span>VICTORIANS</span></div>
+            </div>
+            <div class="nav-menu">
+                <a href="#hero">Home</a>
+                <a href="#roster">Roster</a>
+                <a href="#highlight">Highlights</a>
+                <a href="#news">News</a>
+                <a href="#tips">Tips & Tricks</a>
+            </div>
+            <div style="display:flex; align-items:center;">
+                <button class="sponsor-btn" onclick="toggleSponsor()">SPONSOR US</button>
+                <div class="menu-toggle" onclick="toggleMobile()"><i class="fas fa-bars"></i></div>
+            </div>
+        </nav>
+
+        <div class="mobile-nav" id="mobile-nav">
+            <a href="#hero" onclick="toggleMobile()">HOME</a>
+            <a href="#roster" onclick="toggleMobile()">ROSTER</a>
+            <a href="#highlight" onclick="toggleMobile()">HIGHLIGHTS</a>
+            <a href="#news" onclick="toggleMobile()">NEWS</a>
+            <a href="#tips" onclick="toggleMobile()">TIPS & TRICKS</a>
+        </div>
+
+        <!-- HERO SECTION (ORIGINAL DESIGN) -->
+        <section id="hero" class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="badge">OFFICIAL SQUAD WEBSITE</div>
+                    <h1>WE TRUST ON <br> OUR <br> <span> MINDSET </span></h1>
+                    <p>Welcome to the home of Bangla Victorians. A premier Free Fire e-sports squad dedicated to precision, teamwork, and absolute victory.</p>
+                    <div class="hero-btns">
+                        <a href="#roster" class="btn-white">VIEW ROSTER <i class="fas fa-arrow-right" style="margin-left:5px"></i></a>
+                        <a href="#highlight" class="btn-dark">WATCH HIGHLIGHTS</a>
+                    </div>
+                </div>
+                <div class="stats-card">
+                    <div class="sc-item"><h3>50+</h3><p>Wins</p></div>
+                    <div style="width:1px; background:rgba(255,255,255,0.2)"></div>
+                    <div class="sc-item"><h3>15</h3><p>Trophies</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roster">
+            <div class="section-header"><h2>SQUAD <span>ROSTER</span></h2></div>
+            <div class="roster-grid" id="roster-list"></div>
+        </section>
+
+        <!-- GLOBAL STATS (ORIGINAL DESIGN) -->
+        <div class="global-stats">
+            <div class="gs-item"><h2 id="stat-rank">#01</h2><p>Regional Rank</p></div>
+            <div class="gs-item"><h2 id="stat-matches">150+</h2><p>Matches</p></div>
+            <div class="gs-item"><h2 id="stat-win">85%</h2><p>Win Rate</p></div>
+            <div class="gs-item"><h2 id="stat-titles">12</h2><p>Major Titles</p></div>
+        </div>
+
+        <section id="highlight">
+            <div class="section-header"><h2>GAMEPLAY <span>HIGHLIGHTS</span></h2></div>
+            <div class="vid-grid" id="video-list"></div>
+        </section>
+
+        <section id="news">
+            <div class="section-header"><h2>TEAM <span>NEWS</span></h2></div>
+            <div class="vid-grid" id="news-list"></div>
+        </section>
+
+        <section id="tips">
+            <div class="section-header"><h2>FREE FIRE <span>TIPS & TRICKS</span></h2></div>
+            <div class="vid-grid" id="tips-list"></div>
+        </section>
+
+        <section id="media">
+            <div class="section-header"><h2>SQUAD <span>GALLERY</span></h2></div>
+            <div class="gal-grid" id="gallery-list"></div>
+        </section>
+
+        <section id="contact">
+            <div class="section-header"><h2>FAN <span>WALL</span></h2></div>
+            <div style="max-width:600px; margin:auto;">
+                <input type="text" id="c-name" placeholder="Your Name">
+                <textarea id="c-msg" placeholder="Cheer for the team..."></textarea>
+                <button class="btn-adm" onclick="postComment()">POST MESSAGE</button>
+                <div id="comm-list" style="margin-top:30px; border-top:1px solid #222; padding-top:20px;"></div>
+            </div>
+        </section>
+
+        <footer class="main-footer">
+            <div class="footer-grid">
+                <div class="f-about">
+                    <h2>BANGLA <span>VICTORIANS</span></h2>
+                    <p>A premier Free Fire e-sports squad based in Bangladesh. We play with passion, teamwork, and an absolute winning mindset.</p>
+                </div>
+                <div class="f-links">
+                    <h3>QUICK LINKS</h3>
+                    <a href="#hero">Home</a>
+                    <a href="#roster">Roster</a>
+                    <a href="#tips">Tips & Tricks</a>
+                    <a href="#media">Gallery</a>
+                </div>
+                <div class="f-social">
+                    <h3>FOLLOW US</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="f-bottom"><p>&copy; 2026 Bangla Victorians. All Rights Reserved.</p></div>
+        </footer>
+    </div>
+
+    <!-- ADMIN VIEW (HIDDEN) -->
+    <div id="admin-view" style="display:none; background:#000; min-height:100vh; padding:20px;">
+        <div class="adm-nav" style="display:flex; justify-content:space-between; border-bottom:2px solid var(--primary); padding-bottom:15px; margin-bottom:20px;">
+            <h2 style="color:white; font-family:var(--font-main);">ADMIN <span>PANEL</span></h2>
+            <div><button onclick="goHome()" class="btn-dark" style="padding:5px 15px;">VIEW SITE</button><button onclick="logout()" style="background:red; color:white; border:none; padding:5px 15px; cursor:pointer; margin-left:10px;">LOGOUT</button></div>
+        </div>
+
+        <div class="adm-tabs" style="display:flex; gap:10px; overflow-x:auto; margin-bottom:20px;">
+            <button class="tab-btn active" onclick="tab('ros')">ROSTER</button>
+            <button class="tab-btn" onclick="tab('new')">NEWS</button>
+            <button class="tab-btn" onclick="tab('tip')">TIPS</button>
+            <button class="tab-btn" onclick="tab('set')">STATS/BG</button>
+            <button class="tab-btn" onclick="tab('vid')">VIDEOS</button>
+            <button class="tab-btn" onclick="tab('gal')">GALLERY</button>
+            <button class="tab-btn" onclick="tab('fan')">FANS</button>
+            <button class="tab-btn" onclick="tab('spon')">SPONSORS</button>
+        </div>
+
+        <!-- Forms (Roster, News, Tips, etc.) -->
+        <div id="ros" class="adm-section active">
+            <div class="form-box">
+                <input type="hidden" id="p-id"><input type="text" id="p-img" placeholder="Full Image URL">
+                <input type="text" id="p-ign" placeholder="IGN"><input type="text" id="p-name" placeholder="Real Name">
+                <input type="text" id="p-role" placeholder="Role"><input type="text" id="p-uid" placeholder="UID">
+                <input type="text" id="p-kd" placeholder="K/D"><input type="text" id="p-win" placeholder="Win Rate">
+                <input type="text" id="p-age" placeholder="Age"><input type="text" id="p-prof" placeholder="Square Profile Pic URL">
+                <textarea id="p-desc" placeholder="Bio"></textarea><input type="text" id="p-seo" placeholder="SEO Desc">
+                <button class="btn-adm" id="p-btn" onclick="savePlayer()">SAVE PLAYER</button>
+                <button onclick="clearForm('p')" style="width:100%; margin-top:5px; background:#222; border:none; color:white; padding:10px; cursor:pointer;">CLEAR</button>
+            </div>
+            <div id="adm-roster" style="margin-top:20px;"></div>
+        </div>
+
+        <div id="new" class="adm-section">
+            <div class="form-box">
+                <input type="hidden" id="n-id"><input type="text" id="n-title" placeholder="News Title">
+                <input type="text" id="n-img" placeholder="Image URL"><textarea id="n-desc" placeholder="Content"></textarea>
+                <input type="text" id="n-seo" placeholder="SEO Desc">
+                <button class="btn-adm" id="n-btn" onclick="saveNews()">PUBLISH</button>
+            </div>
+            <div id="adm-news" style="margin-top:20px;"></div>
+        </div>
+
+        <div id="tip" class="adm-section">
+            <div class="form-box">
+                <input type="hidden" id="t-id"><input type="text" id="t-title" placeholder="Tip Title">
+                <input type="text" id="t-img" placeholder="Image URL"><textarea id="t-desc" placeholder="Content"></textarea>
+                <input type="text" id="t-seo" placeholder="SEO Desc">
+                <button class="btn-adm" id="t-btn" onclick="saveTip()">PUBLISH</button>
+            </div>
+            <div id="adm-tips" style="margin-top:20px;"></div>
+        </div>
+
+        <div id="set" class="adm-section">
+            <div class="form-box">
+                <input type="text" id="cfg-bg" placeholder="Hero BG Image URL"><button class="btn-adm" onclick="saveConfig()">SAVE BG</button>
+                <hr style="margin:20px 0; border:1px solid #222;">
+                <input type="text" id="cfg-rank" placeholder="Rank"><input type="text" id="cfg-matches" placeholder="Matches">
+                <input type="text" id="cfg-win" placeholder="Win Rate"><input type="text" id="cfg-titles" placeholder="Titles">
+                <button class="btn-adm" onclick="saveStats()">UPDATE STATS</button>
+            </div>
+        </div>
+
+        <div id="vid" class="adm-section"><div class="form-box"><input type="text" id="v-title" placeholder="Title"><input type="text" id="v-url" placeholder="YouTube URL"><button class="btn-adm" onclick="saveVideo()">ADD VIDEO</button></div><div id="adm-video" style="margin-top:20px;"></div></div>
+        <div id="gal" class="adm-section"><div class="form-box"><input type="text" id="g-url" placeholder="Image URL"><button class="btn-adm" onclick="saveImage()">ADD IMAGE</button></div><div id="adm-gallery" style="margin-top:20px;"></div></div>
+        <div id="fan" class="adm-section"><div id="adm-fans" style="margin-top:20px;"></div></div>
+        <div id="spon" class="adm-section"><div id="adm-sponsors" style="margin-top:20px;"></div></div>
+    </div>
+
+    <!-- MODALS -->
+    <div id="login-modal" class="modal"><div class="modal-box"><h2>ADMIN LOGIN</h2><input type="email" id="email" placeholder="Email"><input type="password" id="pass" placeholder="Password"><button class="btn-adm" onclick="login()">ENTER</button><button onclick="toggleLogin()" style="background:none; border:none; color:#666; margin-top:10px; cursor:pointer;">Close</button></div></div>
+    <div id="sponsor-modal" class="modal"><div class="modal-box"><h2>SPONSORSHIP</h2><input type="text" id="s-name" placeholder="Brand Name"><input type="text" id="s-wp" placeholder="WhatsApp Number"><textarea id="s-desc" placeholder="Details..."></textarea><button class="btn-adm" onclick="submitSponsor()">SUBMIT</button><button onclick="toggleSponsor()" style="background:none; border:none; color:#666; margin-top:10px; cursor:pointer;">Close</button></div></div>
+    <div id="gallery-popup" class="modal"><div class="modal-box" style="background:none; border:none; max-width:800px;"><img id="gm-img" src="" style="width:100%; border-radius:10px;"><button onclick="document.getElementById('gallery-popup').style.display='none'" style="color:white; margin-top:10px; background:none; border:none; cursor:pointer;">Close</button></div></div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangla Victorians - Details</title>
+    
+    <!-- Dynamic SEO Meta Tags -->
+    <meta name="description" id="meta-desc" content="Bangla Victorians Esports Member/News Details.">
+    
+    <!-- FONTS & ICONS -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Teko:wght@400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body { padding-top: 80px; overflow-x: hidden; background-color: #000; color: #fff; }
+
+        /* Navigation Style */
+        .detail-nav {
+            position: fixed; top: 0; width: 100%; z-index: 2000;
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
+            padding: 15px 5%; display: flex; justify-content: center; align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .back-btn-container {
+            max-width: 1100px; margin: 10px auto 20px; padding: 0 5%;
+        }
+
+        .btn-back {
+            background: #111; color: white; border: 1px solid var(--border);
+            padding: 10px 25px; border-radius: 30px; cursor: pointer;
+            font-family: var(--font-sub); font-weight: bold; font-size: 1.1rem;
+            display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;
+        }
+        .btn-back:hover { border-color: var(--primary); color: var(--primary); transform: translateX(-5px); }
+
+        /* Player Profile Styling */
+        .player-hero {
+            display: flex; gap: 50px; background: #0a0a0a;
+            border: 1px solid var(--border); border-radius: 20px;
+            overflow: hidden; margin-bottom: 40px;
+        }
+        .ph-left { flex: 1; background: #000; position: relative; min-height: 500px; }
+        .ph-left img { width: 100%; height: 100%; object-fit: cover; }
+        .ph-right { flex: 1.5; padding: 50px; position: relative; }
+        
+        .role-badge { 
+            background: var(--primary); color: #000; padding: 5px 15px; 
+            font-family: var(--font-sub); font-weight: 800; border-radius: 4px; 
+            display: inline-block; margin-bottom: 10px;
+        }
+
+        .stats-grid-new {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px; margin: 30px 0;
+        }
+        .stat-box-new {
+            background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px;
+            border: 1px solid var(--border); text-align: center;
+        }
+        .stat-box-new span { display: block; color: #666; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+        .stat-box-new b { font-family: var(--font-sub); font-size: 1.8rem; color: #fff; }
+
+        /* News/Tips Styling */
+        .article-wrap { max-width: 850px; margin: auto; }
+        .article-banner { width: 100%; height: 450px; object-fit: cover; border-radius: 20px; border: 1px solid var(--border); }
+        .article-body { margin-top: 40px; }
+        .article-body p { font-size: 1.2rem; color: #ccc; line-height: 1.8; white-space: pre-wrap; }
+
+        .btn-share-floating {
+            background: var(--primary); color: black; border: none; padding: 12px 25px;
+            font-family: var(--font-sub); font-weight: bold; border-radius: 30px;
+            cursor: pointer; display: flex; align-items: center; gap: 10px;
+            transition: 0.3s; margin-top: 30px;
+        }
+        .btn-share-floating:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(204, 255, 0, 0.3); }
+
+        #loader { 
+            position: fixed; inset: 0; background: #000; z-index: 3000; 
+            display: flex; align-items: center; justify-content: center; color: var(--primary);
+            font-family: var(--font-main); font-size: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .player-hero { flex-direction: column; }
+            .ph-left { min-height: 350px; }
+            .ph-right { padding: 25px; }
+            .ph-right h1 { font-size: 3rem !important; }
+            .article-banner { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">LOADING...</div>
+
+    <nav class="detail-nav">
+        <div class="logo-area" onclick="location.href='index.html'" style="cursor:pointer">
+            <img src="logo.png" class="nav-logo-img">
+            <div class="logo-text">BANGLA <span>VICTORIANS</span></div>
+        </div>
+    </nav>
+
+    <div class="back-btn-container">
+        <button onclick="history.back()" class="btn-back">
+            <i class="fas fa-arrow-left"></i> BACK
+        </button>
+    </div>
+
+    <main class="details-container" style="padding: 0 5% 50px;">
+        <div id="dynamic-content">
+            <!-- Content Injected Here -->
+        </div>
+    </main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBb2_hifyeWdf6utoXiE4hxa35b-b6_xww",
+            authDomain: "bangla-victorians-8ead2.firebaseapp.com",
+            projectId: "bangla-victorians-8ead2",
+            storageBucket: "bangla-victorians-8ead2.firebasestorage.app",
+            messagingSenderId: "628248840218",
+            appId: "1:628248840218:web:f8d29e0fe290dd8c16a9a3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get('type');
+        const id = params.get('id');
+
+        const slugify = (text) => text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-');
+
+        async function fetchDetail() {
+            if(!type || !id) { location.href = 'index.html'; return; }
+
+            let colName = type === 'news' ? 'blogs' : (type === 'tips' ? 'tips' : 'roster');
+            const snap = await getDocs(collection(db, colName));
+            let data = null;
+
+            snap.forEach(doc => {
+                let d = doc.data();
+                let compareVal = type === 'roster' ? slugify(d.ign) : slugify(d.title);
+                if(compareVal === id) data = d;
+            });
+
+            if(data) {
+                render(data);
+                document.getElementById('loader').style.display = 'none';
+            } else {
+                document.getElementById('dynamic-content').innerHTML = "<h1 style='text-align:center; color:red; margin-top:50px;'>DATA NOT FOUND!</h1>";
+                document.getElementById('loader').style.display = 'none';
+            }
+        }
+
+        function render(d) {
+            const root = document.getElementById('dynamic-content');
+            
+            if(type === 'roster') {
+                root.innerHTML = `
+                    <div class="player-hero">
+                        <div class="ph-left"><img src="${d.img}" alt="${d.ign}"></div>
+                        <div class="ph-right">
+                            <span class="role-badge">${d.role}</span>
+                            <h1 style="font-family:var(--font-main); font-size:5rem; color:white; line-height:0.9; margin:10px 0;">${d.ign}</h1>
+                            <p style="color:var(--primary); font-family:var(--font-sub); font-size:1.5rem; letter-spacing:2px; margin-bottom:20px;">REAL NAME: ${d.name}</p>
+                            
+                            <div class="stats-grid-new">
+                                <div class="stat-box-new"><span>UID</span><b>${d.uid}</b></div>
+                                <div class="stat-box-new"><span>AGE</span><b>${d.age}</b></div>
+                                <div class="stat-box-new"><span>K/D</span><b style="color:var(--primary)">${d.kd}</b></div>
+                                <div class="stat-box-new"><span>WIN RATE</span><b style="color:var(--primary)">${d.win}</b></div>
+                            </div>
+
+                            <div style="background:rgba(255,255,255,0.03); padding:25px; border-radius:15px; border:1px solid var(--border);">
+                                <h3 style="color:white; margin-bottom:10px; font-family:var(--font-sub); text-transform:uppercase;">Player Bio</h3>
+                                <p style="color:#aaa; line-height:1.6; font-size:1.1rem;">${d.desc || 'Biography not available.'}</p>
+                            </div>
+
+                            <button class="btn-share-floating" onclick="shareMe('${d.ign} Profile')">
+                                <i class="fas fa-share-alt"></i> SHARE PROFILE
+                            </button>
+                        </div>
+                    </div>
+                `;
+                updateSEO(d.ign, d.seo || d.desc, d.img);
+            } else {
+                root.innerHTML = `
+                    <div class="article-wrap">
+                        <img src="${d.img}" class="article-banner">
+                        <div class="article-body">
+                            <span style="color:var(--primary); font-weight:bold; font-family:var(--font-sub); font-size:1.2rem;">DATE: ${d.date || 'RECENT'}</span>
+                            <h1 style="font-family:var(--font-main); font-size:4rem; color:white; margin:15px 0; line-height:1.1;">${d.title}</h1>
+                            <div style="height:2px; background:var(--primary); width:100px; margin-bottom:30px;"></div>
+                            <p>${d.desc}</p>
+                            <button class="btn-share-floating" onclick="shareMe('${d.title}')">
+                                <i class="fas fa-share-alt"></i> SHARE ARTICLE
+                            </button>
+                        </div>
+                    </div>
+                `;
+                updateSEO(d.title, d.seo || d.desc.substring(0,160), d.img);
+            }
+        }
+
+        window.shareMe = (title) => {
+            if (navigator.share) {
+                navigator.share({ title: title, url: window.location.href });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert("Link Copied!");
+            }
+        }
+
+        function updateSEO(title, desc, img) {
+            document.title = title + " | Details";
+            document.getElementById('meta-desc').content = desc;
+        }
+
+        fetchDetail();
+    </script>
+</body>
+</html>
