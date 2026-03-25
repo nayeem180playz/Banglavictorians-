@@ -270,89 +270,86 @@ input:focus { border-color: var(--primary); }
 .mobile-nav a { display: block; color: white; font-size: 1.8rem; font-family: var(--font-main); margin-bottom: 20px; text-align: center; }
 
 /* --- MOBILE VIEW UPDATES (992px and below) --- */
+/* ==========================================================
+   DESKTOP VIEW (Base Styles) - পিসিতে কোনো পরিবর্তন হবে না
+   ========================================================== */
+.hero-btns { display: flex; gap: 15px; } /* পিসিতে বাটন পাশাপাশি থাকবে */
+
+
+/* ==========================================================
+   MOBILE VIEW ONLY (992px এর নিচে কাজ করবে)
+   ========================================================== */
 @media (max-width: 992px) {
-    /* Navigation Update */
+    /* নেভিগেশন ঠিক করা */
     nav {
         padding: 10px 5%;
     }
-    .nav-logo-img {
-        height: 35px; /* মোবাইলে লোগো একটু ছোট */
-    }
-    .logo-text {
-        font-size: 1.6rem;
-    }
-    .nav-menu, .sponsor-btn { 
-        display: none; 
-    }
-    .menu-toggle { 
-        display: block; 
-    }
+    .nav-logo-img { height: 35px; }
+    .logo-text { font-size: 1.6rem; }
 
-    /* Hero Section Update */
+    /* হিরো সেকশনকে বাম দিকে এলাইন করা */
     .hero {
-        padding: 120px 5% 40px; /* নেভিগেশনের জন্য ওপর থেকে জায়গা রাখা হয়েছে */
+        padding: 110px 5% 40px; /* পিসি ভিউ নষ্ট না করে মোবাইলে স্পেস বাড়ানো */
         min-height: auto;
-        display: block; /* কন্টেন্ট ওপর থেকে শুরু হবে */
+        display: flex;
+        align-items: flex-start;
     }
 
     .hero-content { 
         flex-direction: column; 
-        text-align: left; /* বাম দিকে এলাইন করা হয়েছে */
+        text-align: left; /* লেখা বামে থাকবে */
         align-items: flex-start;
     }
 
-    .hero-text {
-        width: 100%;
-    }
-
     .hero h1 {
-        font-size: 4rem; /* স্ক্রিনশট অনুযায়ী বড় সাইজ */
-        margin-bottom: 20px;
+        font-size: 3.5rem; /* মোবাইলে টাইটেল সাইজ */
+        line-height: 0.95;
     }
 
     .hero p {
         font-size: 1rem;
         max-width: 100%;
-        margin-bottom: 30px;
+        margin: 15px 0 25px;
     }
 
-    /* Buttons Update */
+    /* বাটনগুলোকে মোবাইলে নিচে নিচে এবং ফুল উইডথ করা */
     .hero-btns {
-        display: flex;
         flex-direction: column;
         width: 100%;
-        gap: 15px;
+        gap: 12px;
     }
 
     .hero-btns a {
-        width: 100%; /* বাটন ফুল উইডথ */
+        width: 100%; /* বাটন পুরো চওড়া হবে */
         text-align: center;
+        padding: 12px;
+        font-size: 1.4rem;
+        display: flex;
         justify-content: center;
-        padding: 15px;
-        font-size: 1.6rem;
     }
 
+    /* স্ক্রিনশট অনুযায়ী 'WATCH HIGHLIGHTS' বাটন স্টাইল */
     .btn-dark {
-        border: 1px solid var(--primary) !important; /* ওয়াচ হাইলাইটস বাটন বর্ডার হলুদ */
-        color: var(--primary) !important;
+        background: transparent !important;
+        border: 1px solid var(--primary) !important; /* বর্ডার হলুদ */
+        color: var(--primary) !important; /* লেখা হলুদ */
     }
 
-    /* Stats Card Update */
+    /* স্ট্যাট কার্ডটি মোবাইলে মাঝখানে এবং নিচে সেট করা */
     .stats-card { 
-        margin: 50px auto 0; /* স্ট্যাট কার্ড মাঝখানে সেট করা হয়েছে */
+        margin-top: 40px; 
         width: 100%;
-        max-width: 380px;
-        justify-content: space-around;
+        max-width: 400px;
+        align-self: center; /* মাঝখানে রাখার জন্য */
         padding: 20px;
         border-right: none;
-        border-bottom: 5px solid var(--primary); /* বর্ডার নিচে সেট করা হয়েছে */
+        border-bottom: 5px solid var(--primary); /* নিচে হলুদ বর্ডার */
+        display: flex;
+        justify-content: space-around;
     }
 
-    .sc-item h3 {
-        font-size: 2.5rem;
-    }
+    .sc-item h3 { font-size: 2.2rem; }
 }
-
 /* Fan Wall */
 .fan-box { background: #0a0a0a; padding: 15px; border-radius: 8px; border: 1px solid #222; margin-bottom: 15px; }
 .fan-box strong { color: var(--primary); display: block; margin-bottom: 5px; font-size: 1.2rem; }
