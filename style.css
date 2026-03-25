@@ -296,32 +296,83 @@ input:focus { border-color: var(--primary); }
 /* ==========================================================
    MOBILE VIEW FIX (ম্যাক্স ৯৯২ পিক্সেল পর্যন্ত)
    ========================================================== */
+/* ==========================================================
+   ১. DESKTOP BASE STYLES (পিসি ভার্সনের জন্য)
+   ========================================================== */
+
+/* নেভিগেশন ঠিক করা */
+.nav-menu { 
+    display: flex !important; /* পিসিতে মেনু দেখাবে */
+    gap: 30px; 
+}
+.sponsor-btn { 
+    display: block !important; /* পিসিতে স্পন্সর বাটন দেখাবে */
+}
+.menu-toggle { 
+    display: none !important; /* পিসিতে থ্রি-লাইন মেনু হাইড */
+}
+
+/* হিরো সেকশন এলাইনমেন্ট (লেখা বামে, বক্স ডানে) */
+.hero-content { 
+    display: flex; 
+    flex-direction: row; /* পিসিতে পাশাপাশি থাকবে */
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+}
+
+.hero-text {
+    flex: 1;
+    text-align: left;
+}
+
+/* পিসিতে বাটন সাইজ ঠিক করা */
+.hero-btns { 
+    display: flex; 
+    gap: 15px; 
+    margin-top: 30px;
+}
+.hero-btns a { 
+    width: fit-content !important; 
+    min-width: 200px; 
+    justify-content: center;
+}
+
+/* পিসিতে স্ট্যাট বক্স ডানপাশে */
+.stats-card { 
+    flex: 0 0 auto;
+    margin-left: 50px;
+    padding: 35px;
+    border-right: 5px solid var(--primary);
+    border-bottom: none;
+}
+
+/* ==========================================================
+   ২. MOBILE VIEW (৯৯২ পিক্সেল এর নিচে - আপনার পছন্দের মোবাইল ডিজাইন)
+   ========================================================== */
 @media (max-width: 992px) {
-    /* ১. নেভিগেশন মেনু ঠিক করা (মেনু হাইড করা) */
+    /* মোবাইলে নেভিগেশন মেনু হাইড */
     .nav-menu, .sponsor-btn { 
-        display: none !important; /* মোবাইলে মেইন মেনু লিঙ্ক এবং স্পন্সর বাটন দেখাবে না */
+        display: none !important; 
     }
-
     .menu-toggle { 
-        display: block !important; /* মোবাইলে থ্রি-লাইন মেনু আইকন দেখাবে */
+        display: block !important; 
     }
 
-    nav {
-        padding: 10px 5%;
-    }
-
-    /* ২. হিরো সেকশন বামে এলাইন করা */
+    /* মোবাইলে হিরো কন্টেন্ট ওপর-নিচে হবে */
     .hero {
         padding: 110px 5% 40px;
         min-height: auto;
-        display: flex;
-        align-items: flex-start;
     }
 
     .hero-content { 
-        flex-direction: column; 
+        flex-direction: column; /* মোবাইলে ওপর-নিচে */
         text-align: left; 
         align-items: flex-start;
+    }
+
+    .hero-text {
+        width: 100%;
     }
 
     .hero h1 {
@@ -329,36 +380,35 @@ input:focus { border-color: var(--primary); }
         line-height: 0.95;
     }
 
-    /* ৩. মোবাইলে বাটনগুলো ফুল-উইডথ করা (আপনার স্ক্রিনশট অনুযায়ী) */
+    /* মোবাইলে বাটনগুলো ফুল-উইডথ */
     .hero-btns {
         flex-direction: column;
         width: 100%;
         gap: 12px;
     }
-
     .hero-btns a {
-        width: 100% !important; /* মোবাইলে বাটন পুরো চওড়া হবে */
-        justify-content: center;
+        width: 100% !important;
         padding: 14px;
         font-size: 1.5rem;
     }
 
-    /* ওয়াচ হাইলাইটস বাটন স্টাইল */
-    .btn-dark {
-        background: transparent !important;
-        border: 1px solid var(--primary) !important;
-        color: var(--primary) !important;
-    }
-
-    /* ৪. স্ট্যাট কার্ড মোবাইলে মাঝখানে */
+    /* মোবাইলে স্ট্যাট বক্স নিচে এবং মাঝখানে */
     .stats-card { 
-        margin-top: 40px; 
+        margin: 40px auto 0; /* ওপরে গ্যাপ এবং মাঝখানে এলাইন */
         width: 100%;
         max-width: 400px;
         align-self: center;
         padding: 20px;
         border-right: none;
-        border-bottom: 5px solid var(--primary);
+        border-bottom: 5px solid var(--primary); /* নিচে বর্ডার */
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .btn-dark {
+        background: transparent !important;
+        border: 1px solid var(--primary) !important;
+        color: var(--primary) !important;
     }
 }
 /* Fan Wall */
