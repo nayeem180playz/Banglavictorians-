@@ -269,12 +269,88 @@ input:focus { border-color: var(--primary); }
 }
 .mobile-nav a { display: block; color: white; font-size: 1.8rem; font-family: var(--font-main); margin-bottom: 20px; text-align: center; }
 
+/* --- MOBILE VIEW UPDATES (992px and below) --- */
 @media (max-width: 992px) {
-    .hero-content { flex-direction: column; text-align: center; }
-    .stats-card { margin-top: 40px; }
-    .nav-menu { display: none; }
-    .menu-toggle { display: block; }
-    .sponsor-btn { display: none; }
+    /* Navigation Update */
+    nav {
+        padding: 10px 5%;
+    }
+    .nav-logo-img {
+        height: 35px; /* মোবাইলে লোগো একটু ছোট */
+    }
+    .logo-text {
+        font-size: 1.6rem;
+    }
+    .nav-menu, .sponsor-btn { 
+        display: none; 
+    }
+    .menu-toggle { 
+        display: block; 
+    }
+
+    /* Hero Section Update */
+    .hero {
+        padding: 120px 5% 40px; /* নেভিগেশনের জন্য ওপর থেকে জায়গা রাখা হয়েছে */
+        min-height: auto;
+        display: block; /* কন্টেন্ট ওপর থেকে শুরু হবে */
+    }
+
+    .hero-content { 
+        flex-direction: column; 
+        text-align: left; /* বাম দিকে এলাইন করা হয়েছে */
+        align-items: flex-start;
+    }
+
+    .hero-text {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 4rem; /* স্ক্রিনশট অনুযায়ী বড় সাইজ */
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+
+    /* Buttons Update */
+    .hero-btns {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .hero-btns a {
+        width: 100%; /* বাটন ফুল উইডথ */
+        text-align: center;
+        justify-content: center;
+        padding: 15px;
+        font-size: 1.6rem;
+    }
+
+    .btn-dark {
+        border: 1px solid var(--primary) !important; /* ওয়াচ হাইলাইটস বাটন বর্ডার হলুদ */
+        color: var(--primary) !important;
+    }
+
+    /* Stats Card Update */
+    .stats-card { 
+        margin: 50px auto 0; /* স্ট্যাট কার্ড মাঝখানে সেট করা হয়েছে */
+        width: 100%;
+        max-width: 380px;
+        justify-content: space-around;
+        padding: 20px;
+        border-right: none;
+        border-bottom: 5px solid var(--primary); /* বর্ডার নিচে সেট করা হয়েছে */
+    }
+
+    .sc-item h3 {
+        font-size: 2.5rem;
+    }
 }
 
 /* Fan Wall */
