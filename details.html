@@ -35,7 +35,7 @@
 
         .btn-back {
             background: #111; color: white; border: 1px solid var(--border);
-            padding: 10px 25px; border-radius: 30px; cursor: pointer;
+            padding: 10px 25px; border-radius: 6px; cursor: pointer;
             font-family: var(--font-sub); font-weight: bold; font-size: 1.1rem;
             display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;
         }
@@ -72,11 +72,30 @@
         .article-wrap { max-width: 850px; margin: auto; }
         .article-banner { width: 100%; height: 450px; object-fit: cover; border-radius: 20px; border: 1px solid var(--border); }
         .article-body { margin-top: 40px; }
-        .article-body p { font-size: 1.2rem; color: #ccc; line-height: 1.8; white-space: pre-wrap; }
+        
+        /* New Styles for text and inline images */
+        .article-content { 
+            font-size: 1.2rem; 
+            color: #ccc; 
+            line-height: 1.8; 
+            white-space: pre-wrap; /* লাইন ব্রেক ঠিক রাখার জন্য */
+            font-family: var(--font-body);
+        }
+        
+        /* লেখার মাঝখানের ছবিগুলোর ডিজাইন */
+        .article-inline-img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin: 25px 0;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
 
         .btn-share-floating {
             background: var(--primary); color: black; border: none; padding: 12px 25px;
-            font-family: var(--font-sub); font-weight: bold; border-radius: 30px;
+            font-family: var(--font-sub); font-weight: bold; border-radius: 6px; font-size: 1.2rem;
             cursor: pointer; display: flex; align-items: center; gap: 10px;
             transition: 0.3s; margin-top: 30px;
         }
@@ -104,7 +123,7 @@
     <nav class="detail-nav">
         <div class="logo-area" onclick="location.href='index.html'" style="cursor:pointer">
             <img src="logo.png" class="nav-logo-img">
-            <div class="logo-text">BANGLA <span>VICTORIANS</span></div>
+            <div class="logo-text" style="font-family: var(--font-main); font-size: 2rem; color: white; display:flex; gap:6px;">BANGLA <span style="color:var(--primary);">VICTORIANS</span></div>
         </div>
     </nav>
 
@@ -141,6 +160,16 @@
         const id = params.get('id');
 
         const slugify = (text) => text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/--+/g, '-');
+
+        // এই ফাংশনটি [img]link[/img] কে HTML ইমেজে রূপান্তর করবে
+        function formatContent(text) {
+            if(!text) return '';
+            // প্রথমে সিকিউরিটির জন্য < এবং > ট্যাগ এস্কেপ করা হলো
+            let safeText = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            // এবার [img]...[/img] কে <img src="..."> এ রিপ্লেস করা হবে
+            safeText = safeText.replace(/\[img\](.*?)\[\/img\]/gi, '<img src="$1" class="article-inline-img">');
+            return safeText;
+        }
 
         async function fetchDetail() {
             if(!type || !id) { location.href = 'index.html'; return; }
@@ -185,7 +214,7 @@
 
                             <div style="background:rgba(255,255,255,0.03); padding:25px; border-radius:15px; border:1px solid var(--border);">
                                 <h3 style="color:white; margin-bottom:10px; font-family:var(--font-sub); text-transform:uppercase;">Player Bio</h3>
-                                <p style="color:#aaa; line-height:1.6; font-size:1.1rem;">${d.desc || 'Biography not available.'}</p>
+                                <p style="color:#aaa; line-height:1.6; font-size:1.1rem; white-space:pre-wrap;">${d.desc || 'Biography not available.'}</p>
                             </div>
 
                             <button class="btn-share-floating" onclick="shareMe('${d.ign} Profile')">
@@ -203,7 +232,10 @@
                             <span style="color:var(--primary); font-weight:bold; font-family:var(--font-sub); font-size:1.2rem;">DATE: ${d.date || 'RECENT'}</span>
                             <h1 style="font-family:var(--font-main); font-size:4rem; color:white; margin:15px 0; line-height:1.1;">${d.title}</h1>
                             <div style="height:2px; background:var(--primary); width:100px; margin-bottom:30px;"></div>
-                            <p>${d.desc}</p>
+                            
+                            <!-- এখানে নতুন ফরম্যাটেড কন্টেন্ট আসবে -->
+                            <div class="article-content">${formatContent(d.desc)}</div>
+                            
                             <button class="btn-share-floating" onclick="shareMe('${d.title}')">
                                 <i class="fas fa-share-alt"></i> SHARE ARTICLE
                             </button>
