@@ -22,7 +22,7 @@
     margin: 0; 
     padding: 0; 
     outline: none; 
-    text-decoration: none !important; 
+    text-decoration: none !important; /* সব আন্ডারলাইন রিমুভ */
     -webkit-tap-highlight-color: transparent; 
 }
 
@@ -117,6 +117,10 @@ nav {
     align-items: center; 
     z-index: 10;
 }
+.hero-text {
+    text-align: left;
+    width: 100%;
+}
 .hero h1 { 
     font-family: var(--font-main); 
     font-size: clamp(3rem, 8vw, 6.5rem); 
@@ -130,6 +134,7 @@ nav {
 .hero-btns {
     display: flex;
     gap: 15px;
+    margin-top: 25px;
 }
 
 .badge { 
@@ -274,89 +279,61 @@ input:focus { border-color: var(--primary); }
 }
 .mobile-nav a { display: block; color: white; font-size: 1.8rem; font-family: var(--font-main); margin-bottom: 20px; text-align: center; }
 
-/* ==========================================================
-   MOBILE VIEW FIX (৯৯২ পিক্সেল এর নিচে)
-   ডেস্কটপ ভিউ ঠিক রেখে শুধুমাত্র মোবাইলের ডিজাইন আপডেট করা হয়েছে।
-   ========================================================== */
+/* Fan Wall */
+.fan-box { background: #0a0a0a; padding: 15px; border-radius: 8px; border: 1px solid #222; margin-bottom: 15px; }
+.fan-box strong { color: var(--primary); display: block; margin-bottom: 5px; font-size: 1.2rem; }
+.fan-box p { color: #ccc; }
+
+/* Admin Panel Special Styles */
+.adm-item { 
+    background: #0a0a0a; padding: 15px; margin-bottom: 10px; 
+    display: flex; justify-content: space-between; align-items: center; 
+    border-radius: 6px; border: 1px solid #222; color: white; 
+}
+.tab-btn { 
+    background: #111; color: white; border: 1px solid #222; 
+    padding: 10px 20px; cursor: pointer; font-family: var(--font-sub); font-weight: bold; 
+}
+.tab-btn.active { background: var(--primary); color: black; }
+
+/* =========================================
+   MOBILE RESPONSIVE CHANGES (AS PER SCREENSHOT)
+   ========================================= */
 @media (max-width: 992px) {
-    /* নেভিগেশন মেনু মোবাইলে হাইড */
-    .nav-menu, .sponsor-btn { 
-        display: none !important; 
-    }
-    .menu-toggle { 
-        display: block !important; 
-    }
-    nav { padding: 10px 5%; }
-
-    /* হিরো সেকশন এলাইনমেন্ট (বাম দিক থেকে শুরু) */
-    .hero {
-        padding: 110px 5% 40px;
-        min-height: auto;
-        display: flex;
-        align-items: flex-start;
-    }
-
     .hero-content { 
-        flex-direction: column !important; 
-        text-align: left !important; 
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
+        flex-direction: column; 
+        align-items: flex-start; /* লেখাগুলোকে বামে আনবে */
+        text-align: left; 
     }
-
+    
     .hero-text {
-        width: 100%;
-        text-align: left !important;
-    }
-
-    .hero h1 {
-        font-size: 3.5rem;
-        line-height: 0.95;
-        text-align: left;
+        padding-top: 40px; /* মোবাইলে মেনুবারের নিচে স্পেস */
     }
 
     .hero p {
-        font-size: 1rem;
         max-width: 100%;
         margin: 15px 0 25px;
-        text-align: left;
     }
 
-    /* বাটনগুলো ফুল-উইডথ এবং নিচে নিচে */
     .hero-btns {
-        flex-direction: column !important;
+        flex-direction: column; /* বাটনগুলোকে নিচে নিচে আনবে */
         width: 100%;
-        gap: 12px;
-        display: flex !important;
     }
 
     .hero-btns a {
-        width: 100% !important;
-        justify-content: center;
-        padding: 14px;
-        font-size: 1.5rem;
-        display: flex !important;
+        width: 100%; /* বাটনগুলোকে ফুল স্ক্রিন উইডথ করবে */
     }
 
-    /* ওয়াচ হাইলাইটস বাটন মোবাইল স্টাইল */
-    .btn-dark {
-        background: transparent !important;
-        border: 1px solid var(--primary) !important;
-        color: var(--primary) !important;
-    }
-
-    /* স্ট্যাট কার্ড মোবাইলে মাঝখানে এবং নিচে */
     .stats-card { 
-        margin: 40px auto 0 !important; 
-        width: 100%;
-        max-width: 400px;
-        align-self: center !important;
-        padding: 20px;
-        border-right: none !important;
-        border-bottom: 5px solid var(--primary) !important; 
-        display: flex !important;
+        width: 100%; /* কার্ড ফুল উইডথ */
+        margin-top: 35px; 
         justify-content: space-around;
-        flex-direction: row !important;
+        border-right: none; 
+        border-top: 3px solid var(--primary); /* মোবাইলে উপরের দিকে বর্ডার */
+        padding: 25px 20px;
     }
 
-    .sc-item h3 { font-size: 2.2rem; }
+    .nav-menu { display: none; }
+    .menu-toggle { display: block; }
+    .sponsor-btn { display: none; }
 }
