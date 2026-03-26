@@ -61,7 +61,7 @@ body {
 .btn-dark:hover { border-color: var(--primary); color: var(--primary); background: rgba(204, 255, 0, 0.05); transform: translateY(-3px); }
 .btn-adm { background: var(--primary); color: black; width: 100%; margin-top: 10px; }
 
-/* Navigation */
+/* ================== NAVIGATION BAR ================== */
 nav { 
     display: flex; 
     justify-content: space-between; 
@@ -78,21 +78,21 @@ nav {
 .logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 .nav-logo-img { height: 40px; width: auto; }
 
-/* লোগো টেক্সট ফিক্স (পাশাপাশি রাখার জন্য) */
+/* লোগো টেক্সট পাশাপাশি */
 .logo-text { 
     display: flex; 
-    align-items: center; /* লম্বালম্বি না, পাশাপাশি থাকবে */
-    gap: 6px; /* দুই শব্দের মাঝে গ্যাপ */
+    align-items: center; 
+    gap: 6px; 
     font-family: var(--font-main); 
     font-size: 2.2rem; 
     color: white; 
     line-height: 1; 
     text-transform: uppercase; 
-    letter-spacing: 0.5px; 
 }
 .logo-text span { color: var(--primary); }
 
-.nav-menu { display: flex; gap: 30px; }
+/* PC View Menu */
+.nav-menu { display: flex; gap: 30px; align-items: center; }
 .nav-menu a { 
     color: #ccc; 
     font-weight: 600; 
@@ -107,8 +107,9 @@ nav {
     background: var(--primary); color: black; padding: 6px 15px; border-radius: 4px; 
     font-weight: 800; font-family: var(--font-sub); font-size: 1.1rem; border: none; cursor: pointer; 
 }
+.menu-toggle { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
 
-/* ================== HERO SECTION (PC VIEW) ================== */
+/* ================== HERO SECTION (PC VIEW - SIDE BY SIDE) ================== */
 .hero { 
     min-height: 100vh; 
     display: flex; 
@@ -128,9 +129,11 @@ nav {
     z-index: 10;
     gap: 50px;
 }
+
+/* Left Side: Text and Buttons */
 .hero-text {
-    width: 100%;
-    max-width: 600px; /* লেখা বাম পাশে লিমিট করার জন্য */
+    flex: 1; 
+    max-width: 600px; 
     text-align: left;
 }
 
@@ -159,19 +162,21 @@ nav {
 
 .hero-btns {
     display: flex;
-    flex-direction: column; /* বাটনগুলো নিচে নিচে */
+    flex-direction: column; /* PC তেও বাটনগুলো নিচে নিচে */
     width: 100%;
+    max-width: 450px; /* ডেক্সটপে বাটন বেশি লম্বা না হওয়ার জন্য লিমিট */
     gap: 15px;
 }
 .hero-btns a { width: 100%; }
 
-/* Stats Card - PC তে ডান দিকে থাকবে */
+/* Right Side: Stats Card - PC তে ডান দিকে থাকবে */
 .stats-card { 
+    flex: 0 0 auto;
     min-width: 380px;
     background: rgba(15, 15, 15, 0.8); 
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-right: 5px solid var(--primary); /* PC তে ডান পাশে বর্ডার */
-    padding: 35px 40px; 
+    padding: 40px 50px; 
     border-radius: 12px; 
     display: flex; 
     justify-content: space-between; 
@@ -238,6 +243,9 @@ section { padding: 80px 5%; max-width: 1300px; margin: 0 auto; }
 .modal-box h2 { font-family: var(--font-main); color: white; margin-bottom: 20px; text-align: center; font-size: 2rem;}
 input, textarea { width: 100%; background: #000; border: 1px solid #222; color: white; padding: 12px; margin-bottom: 12px; font-family: var(--font-body); border-radius: 6px; font-size: 1rem;}
 input:focus, textarea:focus { border-color: var(--primary); }
+.fan-box { background: #0a0a0a; padding: 15px; border-radius: 8px; border: 1px solid #222; margin-bottom: 15px; }
+.fan-box strong { color: var(--primary); display: block; margin-bottom: 5px; font-size: 1.1rem; }
+.fan-box p { color: #ccc; line-height: 1.5;}
 
 .adm-item { background: #0a0a0a; padding: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border-radius: 6px; border: 1px solid #222; color: white; }
 .tab-btn { background: #111; color: white; border: 1px solid #222; padding: 10px 15px; cursor: pointer; font-family: var(--font-sub); font-weight: bold; font-size: 1.1rem; border-radius: 4px;}
@@ -246,43 +254,38 @@ input:focus, textarea:focus { border-color: var(--primary); }
 .adm-section.active { display: block; }
 
 /* =========================================
-   MOBILE RESPONSIVE CHANGES (PERFECT MATCH)
+   MOBILE RESPONSIVE CHANGES (Max 768px)
    ========================================= */
-.menu-toggle { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
 .mobile-nav { display: none; position: fixed; top: 70px; left: 0; width: 100%; background: #000; padding: 30px; border-bottom: 2px solid var(--primary); z-index: 999; }
 .mobile-nav a { display: block; color: white; font-size: 1.5rem; font-family: var(--font-main); margin-bottom: 20px; text-align: center; }
 
-@media (max-width: 992px) {
-    /* লোগো সাইজ মোবাইলের জন্য হালকা ছোট করা হলো */
-    .logo-text { font-size: 1.5rem; }
+@media (max-width: 768px) {
+    /* লোগো সাইজ মোবাইলের জন্য ফিক্স */
+    .logo-text { font-size: 1.6rem; }
 
-    .nav-menu { display: none; }
+    /* মেনুগুলো মোবাইলে হাইড হয়ে যাবে এবং হ্যামবার্গার আসবে */
+    .nav-menu { display: none !important; }
     .menu-toggle { display: block; }
     .sponsor-btn { display: none; }
 
-    .hero { padding: 100px 5% 60px; }
+    .hero { padding: 120px 5% 60px; }
     
     .hero-content { 
         flex-direction: column; /* মোবাইলে নিচে নিচে থাকবে */
-        align-items: flex-start; 
-        gap: 0;
+        gap: 40px;
     }
     
     .hero-text { max-width: 100%; }
+    .hero-btns { max-width: 100%; }
 
-    .hero p { margin: 15px 0 25px; }
-
-    /* Mobile Stats Card - নিচে থাকবে, ডান পাশের বর্ডার মুছে উপরে লাইন আসবে */
+    /* Mobile Stats Card - নিচে থাকবে, উপরের দিকে লাইন আসবে */
     .stats-card { 
-        min-width: 100%;
         width: 100%; 
-        margin-top: 40px; 
+        min-width: 100%;
         justify-content: space-around;
-        border-right: 1px solid rgba(255, 255, 255, 0.05); /* মোবাইলে নরমাল বর্ডার */
+        border-right: 1px solid rgba(255, 255, 255, 0.05); /* ডান পাশের বর্ডার মুছে দেওয়া হলো */
         border-top: 4px solid var(--primary); /* উপরে প্রাইমারি লাইন */
         padding: 25px 20px;
-        border-radius: 12px;
-        gap: 15px;
     }
     
     .sc-item h3 { font-size: 2.8rem; }
