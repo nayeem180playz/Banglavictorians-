@@ -1,6 +1,6 @@
 /* 
     BANGLA VICTORIANS - OFFICIAL CSS 
-    Theme: Acid Lime & Dark Esports (Universal Single Column Layout)
+    Theme: Acid Lime & Dark Esports (Perfect Desktop & Mobile Layout)
 */
 
 :root {
@@ -41,7 +41,7 @@ body {
 
 /* Buttons */
 .btn-white, .btn-dark, .btn-adm {
-    padding: 14px 20px; 
+    padding: 14px 25px; 
     font-family: var(--font-sub); 
     font-size: 1.4rem; 
     font-weight: 700;
@@ -55,10 +55,10 @@ body {
     border: none;
     letter-spacing: 1px;
 }
-.btn-white { background: white; color: black; }
-.btn-white:hover { background: #e6e6e6; }
+.btn-white { background: white; color: black; box-shadow: 0 5px 15px rgba(255,255,255,0.1); }
+.btn-white:hover { background: #e6e6e6; transform: translateY(-3px); }
 .btn-dark { background: rgba(255,255,255,0.08); color: white; border: 1px solid rgba(255,255,255,0.1); }
-.btn-dark:hover { border-color: var(--primary); color: var(--primary); background: rgba(204, 255, 0, 0.05); }
+.btn-dark:hover { border-color: var(--primary); color: var(--primary); background: rgba(204, 255, 0, 0.05); transform: translateY(-3px); }
 .btn-adm { background: var(--primary); color: black; width: 100%; margin-top: 10px; }
 
 /* Navigation */
@@ -75,17 +75,18 @@ nav {
     backdrop-filter: blur(15px); 
     border-bottom: 1px solid rgba(255,255,255,0.05); 
 }
-.logo-area { display: flex; align-items: center; gap: 10px; }
+.logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 .nav-logo-img { height: 40px; width: auto; }
 
-/* লোগোর লেখা নিচে নিচে আনার জন্য */
+/* লোগো টেক্সট ফিক্স (পাশাপাশি রাখার জন্য) */
 .logo-text { 
     display: flex; 
-    flex-direction: column; 
+    align-items: center; /* লম্বালম্বি না, পাশাপাশি থাকবে */
+    gap: 6px; /* দুই শব্দের মাঝে গ্যাপ */
     font-family: var(--font-main); 
-    font-size: 1.8rem; 
+    font-size: 2.2rem; 
     color: white; 
-    line-height: 0.9; 
+    line-height: 1; 
     text-transform: uppercase; 
     letter-spacing: 0.5px; 
 }
@@ -107,23 +108,30 @@ nav {
     font-weight: 800; font-family: var(--font-sub); font-size: 1.1rem; border: none; cursor: pointer; 
 }
 
-/* ================== HERO SECTION (PC + MOBILE SAME VIEW) ================== */
+/* ================== HERO SECTION (PC VIEW) ================== */
 .hero { 
     min-height: 100vh; 
     display: flex; 
     align-items: center; 
-    padding: 120px 5% 60px; /* Nav bar er niche theke shuru hobe */
+    padding: 120px 5% 60px; 
     position: relative; 
-    background: #050505; /* Black Background */
+    background: #050505; 
 }
 .hero-content { 
     width: 100%; 
-    max-width: 600px; /* ডেক্সটপেও যেন বাটনগুলো স্ক্রিনের বাইরে না যায় তাই লিমিট করা হলো */
+    max-width: 1300px;
+    margin: 0 auto;
     display: flex; 
-    flex-direction: column; /* সবকিছু নিচে নিচে */
-    align-items: flex-start; /* বাম দিকে এলাইন */
-    text-align: left;
+    flex-direction: row; /* PC তে পাশাপাশি (Left-Right) */
+    justify-content: space-between; 
+    align-items: center; 
     z-index: 10;
+    gap: 50px;
+}
+.hero-text {
+    width: 100%;
+    max-width: 600px; /* লেখা বাম পাশে লিমিট করার জন্য */
+    text-align: left;
 }
 
 .badge { 
@@ -131,61 +139,59 @@ nav {
     color: var(--primary); 
     padding: 4px 10px; 
     border-radius: 4px; 
-    font-size: 0.75rem; 
+    font-size: 0.8rem; 
     font-weight: 800; 
     display: inline-block; 
-    margin-bottom: 15px; 
+    margin-bottom: 20px; 
     border: 1px solid rgba(204, 255, 0, 0.4);
     letter-spacing: 0.5px;
 }
 
 .hero h1 { 
     font-family: var(--font-main); 
-    font-size: clamp(3.5rem, 12vw, 6rem); 
+    font-size: clamp(3.5rem, 8vw, 6.5rem); 
     line-height: 0.9; 
     color: white; 
     text-transform: uppercase; 
 }
 .hero h1 span { color: var(--primary); }
-.hero p { color: #aaa; font-size: 1rem; margin: 15px 0 25px; line-height: 1.6; font-weight: 500; }
+.hero p { color: #aaa; font-size: 1.1rem; margin: 20px 0 30px; line-height: 1.6; font-weight: 500; }
 
 .hero-btns {
     display: flex;
-    flex-direction: column; /* বাটন নিচে নিচে */
+    flex-direction: column; /* বাটনগুলো নিচে নিচে */
     width: 100%;
-    gap: 12px;
+    gap: 15px;
 }
-.hero-btns a { width: 100%; } /* বাটন ফুল উইডথ */
+.hero-btns a { width: 100%; }
 
-/* Stats Card right below the buttons */
+/* Stats Card - PC তে ডান দিকে থাকবে */
 .stats-card { 
-    width: 100%; 
+    min-width: 380px;
     background: rgba(15, 15, 15, 0.8); 
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-top: 3px solid var(--primary); /* উপরে লাইন */
-    padding: 20px; 
-    border-radius: 8px; 
+    border-right: 5px solid var(--primary); /* PC তে ডান পাশে বর্ডার */
+    padding: 35px 40px; 
+    border-radius: 12px; 
     display: flex; 
-    justify-content: space-evenly; 
+    justify-content: space-between; 
     align-items: center;
-    margin-top: 25px; 
-    gap: 10px;
+    gap: 30px;
 }
 .sc-item { text-align: center; }
-.sc-item h3 { font-family: var(--font-sub); font-size: 2.8rem; color: var(--primary); line-height: 1; }
-.sc-item p { color: #888; text-transform: uppercase; font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; margin-top: 5px; }
-
+.sc-item h3 { font-family: var(--font-sub); font-size: 3.5rem; color: var(--primary); line-height: 1; text-shadow: 0 0 10px rgba(204,255,0,0.2); }
+.sc-item p { color: #888; text-transform: uppercase; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; margin-top: 5px; }
 
 /* ================== OTHER SECTIONS ================== */
-section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+section { padding: 80px 5%; max-width: 1300px; margin: 0 auto; }
 .section-header { margin-bottom: 40px; }
-.section-header h2 { font-family: var(--font-main); font-size: 3rem; text-transform: uppercase; color: white; letter-spacing: 1px; }
+.section-header h2 { font-family: var(--font-main); font-size: 3.2rem; text-transform: uppercase; color: white; letter-spacing: 1px; }
 .section-header span { color: var(--primary); }
 
 /* Roster Grid */
-.roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
-.player-card { background: var(--bg-card); border-radius: 10px; overflow: hidden; position: relative; height: 350px; border: 1px solid #1a1a1a; transition: var(--transition); }
-.player-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+.roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; }
+.player-card { background: var(--bg-card); border-radius: 10px; overflow: hidden; position: relative; height: 380px; border: 1px solid #1a1a1a; transition: var(--transition); }
+.player-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(204,255,0,0.1); }
 .p-img { width: 100%; height: 100%; object-fit: cover; }
 .p-info { position: absolute; bottom: 0; width: 100%; padding: 20px; background: linear-gradient(to top, #000 80%, transparent); }
 .p-name { font-family: var(--font-main); font-size: 1.8rem; color: white; text-transform: uppercase; }
@@ -193,11 +199,11 @@ section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
 
 /* Global Stats Bar */
 .global-stats { background: var(--primary); padding: 50px 5%; display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; gap: 20px; }
-.gs-item h2 { font-family: var(--font-main); font-size: 3.5rem; color: #000; line-height: 1; }
-.gs-item p { color: #111; font-weight: 900; text-transform: uppercase; font-size: 1rem; }
+.gs-item h2 { font-family: var(--font-main); font-size: 4rem; color: #000; line-height: 1; }
+.gs-item p { color: #111; font-weight: 900; text-transform: uppercase; font-size: 1.1rem; }
 
 /* Video & News Card Styles */
-.vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
 .vid-card { background: var(--bg-card); border-radius: 10px; overflow: hidden; border: 1px solid #1a1a1a; transition: var(--transition); }
 .vid-card:hover { border-color: var(--primary); transform: translateY(-5px); }
 .vid-thumb { width: 100%; height: 200px; background: #000; overflow: hidden; }
@@ -209,13 +215,13 @@ section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
 .vid-card:hover .vid-title { color: var(--primary) !important; }
 
 /* Gallery */
-.gal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
-.gal-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 1px solid #222; transition: 0.3s; }
+.gal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+.gal-img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 1px solid #222; transition: 0.3s; }
 .gal-img:hover { border-color: var(--primary); transform: scale(1.03); }
 
 /* Footer */
 .main-footer { background: #050505; padding: 60px 5% 40px; border-top: 1px solid #111; }
-.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1300px; margin: 0 auto; }
 .f-about h2 { font-family: var(--font-main); font-size: 2.2rem; margin-bottom: 15px; }
 .f-about span { color: var(--primary); }
 .f-about p { color: #777; line-height: 1.6; font-size: 1rem; }
@@ -226,19 +232,13 @@ section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
 .social-icons a { width: 45px; height: 45px; background: #111; display: flex; align-items: center; justify-content: center; border-radius: 6px; color: white; transition: 0.3s; border: 1px solid #222; font-size: 1.1rem;}
 .social-icons a:hover { background: var(--primary); color: black; transform: translateY(-5px); }
 
-/* Modals & Forms */
+/* Modals & Admin Form Fixes */
 .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
 .modal-box { background: #0a0a0a; padding: 30px; border-radius: 12px; width: 100%; max-width: 400px; border: 1px solid var(--primary); position: relative; }
 .modal-box h2 { font-family: var(--font-main); color: white; margin-bottom: 20px; text-align: center; font-size: 2rem;}
 input, textarea { width: 100%; background: #000; border: 1px solid #222; color: white; padding: 12px; margin-bottom: 12px; font-family: var(--font-body); border-radius: 6px; font-size: 1rem;}
 input:focus, textarea:focus { border-color: var(--primary); }
-.fan-box { background: #0a0a0a; padding: 15px; border-radius: 8px; border: 1px solid #222; margin-bottom: 15px; }
-.fan-box strong { color: var(--primary); display: block; margin-bottom: 5px; font-size: 1.1rem; }
-.fan-box p { color: #ccc; line-height: 1.5;}
 
-/* =========================================
-   ADMIN PANEL FIX (Active Tab properly showing)
-   ========================================= */
 .adm-item { background: #0a0a0a; padding: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border-radius: 6px; border: 1px solid #222; color: white; }
 .tab-btn { background: #111; color: white; border: 1px solid #222; padding: 10px 15px; cursor: pointer; font-family: var(--font-sub); font-weight: bold; font-size: 1.1rem; border-radius: 4px;}
 .tab-btn.active { background: var(--primary); color: black; border-color: var(--primary); }
@@ -246,14 +246,44 @@ input:focus, textarea:focus { border-color: var(--primary); }
 .adm-section.active { display: block; }
 
 /* =========================================
-   MOBILE MENU OVERRIDES
+   MOBILE RESPONSIVE CHANGES (PERFECT MATCH)
    ========================================= */
 .menu-toggle { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
 .mobile-nav { display: none; position: fixed; top: 70px; left: 0; width: 100%; background: #000; padding: 30px; border-bottom: 2px solid var(--primary); z-index: 999; }
 .mobile-nav a { display: block; color: white; font-size: 1.5rem; font-family: var(--font-main); margin-bottom: 20px; text-align: center; }
 
 @media (max-width: 992px) {
+    /* লোগো সাইজ মোবাইলের জন্য হালকা ছোট করা হলো */
+    .logo-text { font-size: 1.5rem; }
+
     .nav-menu { display: none; }
     .menu-toggle { display: block; }
     .sponsor-btn { display: none; }
+
+    .hero { padding: 100px 5% 60px; }
+    
+    .hero-content { 
+        flex-direction: column; /* মোবাইলে নিচে নিচে থাকবে */
+        align-items: flex-start; 
+        gap: 0;
+    }
+    
+    .hero-text { max-width: 100%; }
+
+    .hero p { margin: 15px 0 25px; }
+
+    /* Mobile Stats Card - নিচে থাকবে, ডান পাশের বর্ডার মুছে উপরে লাইন আসবে */
+    .stats-card { 
+        min-width: 100%;
+        width: 100%; 
+        margin-top: 40px; 
+        justify-content: space-around;
+        border-right: 1px solid rgba(255, 255, 255, 0.05); /* মোবাইলে নরমাল বর্ডার */
+        border-top: 4px solid var(--primary); /* উপরে প্রাইমারি লাইন */
+        padding: 25px 20px;
+        border-radius: 12px;
+        gap: 15px;
+    }
+    
+    .sc-item h3 { font-size: 2.8rem; }
 }
