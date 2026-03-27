@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bangla Victorians - Official Free Fire Esports Site</title>
-    
-    <!-- SEO & Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Teko:wght@400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Quill.js Rich Text Editor CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,16 +15,16 @@
     <!-- USER VIEW -->
     <div id="user-view">
         <nav>
-            <div class="logo-area" onclick="toggleLogin()" style="cursor:pointer;">
+            <div class="logo-area" onclick="toggleLogin()">
                 <img src="logo.png" alt="Logo" class="nav-logo-img">
                 <div class="logo-text">BANGLA <span>VICTORIANS</span></div>
             </div>
             <div class="nav-menu">
                 <a href="#hero">Home</a>
                 <a href="#roster">Roster</a>
-                <a href="#highlight">Highlights</a>
+                <a href="#achievements">Trophies</a>
                 <a href="#news">News</a>
-                <a href="#tips">Tips & Tricks</a>
+                <a href="#tips">Tips</a>
             </div>
             <div style="display:flex; align-items:center;">
                 <button class="sponsor-btn" onclick="toggleSponsor()">SPONSOR US</button>
@@ -35,12 +35,11 @@
         <div class="mobile-nav" id="mobile-nav">
             <a href="#hero" onclick="toggleMobile()">HOME</a>
             <a href="#roster" onclick="toggleMobile()">ROSTER</a>
-            <a href="#highlight" onclick="toggleMobile()">HIGHLIGHTS</a>
+            <a href="#achievements" onclick="toggleMobile()">TROPHIES</a>
             <a href="#news" onclick="toggleMobile()">NEWS</a>
-            <a href="#tips" onclick="toggleMobile()">TIPS & TRICKS</a>
+            <a href="#tips" onclick="toggleMobile()">TIPS</a>
         </div>
 
-        <!-- HERO SECTION (ORIGINAL DESIGN) -->
         <section id="hero" class="hero">
             <div class="hero-bg"></div>
             <div class="hero-content">
@@ -55,8 +54,8 @@
                 </div>
                 <div class="stats-card">
                     <div class="sc-item"><h3>50+</h3><p>Wins</p></div>
-                    <div style="width:1px; background:rgba(255,255,255,0.2)"></div>
-                    <div class="sc-item"><h3>15</h3><p>Trophies</p></div>
+                    <div style="width:1px; background:rgba(255,255,255,0.2); height:50px;"></div>
+                    <div class="sc-item"><h3 id="stat-titles">15</h3><p>Trophies</p></div>
                 </div>
             </div>
         </section>
@@ -66,18 +65,22 @@
             <div class="roster-grid" id="roster-list"></div>
         </section>
 
-        <!-- GLOBAL STATS (ORIGINAL DESIGN) -->
+        <section id="staff" style="background: #050505;">
+            <div class="section-header"><h2>MANAGEMENT <span>& STAFF</span></h2></div>
+            <div class="roster-grid" id="staff-list"></div>
+        </section>
+
+        <!-- NEW: Trophy Cabinet -->
+        <section id="achievements">
+            <div class="section-header"><h2>TROPHY <span>CABINET</span></h2></div>
+            <div class="trophy-grid" id="trophy-list"></div>
+        </section>
+
         <div class="global-stats">
             <div class="gs-item"><h2 id="stat-rank">#01</h2><p>Regional Rank</p></div>
             <div class="gs-item"><h2 id="stat-matches">150+</h2><p>Matches</p></div>
             <div class="gs-item"><h2 id="stat-win">85%</h2><p>Win Rate</p></div>
-            <div class="gs-item"><h2 id="stat-titles">12</h2><p>Major Titles</p></div>
         </div>
-
-        <section id="highlight">
-            <div class="section-header"><h2>GAMEPLAY <span>HIGHLIGHTS</span></h2></div>
-            <div class="vid-grid" id="video-list"></div>
-        </section>
 
         <section id="news">
             <div class="section-header"><h2>TEAM <span>NEWS</span></h2></div>
@@ -85,24 +88,15 @@
         </section>
 
         <section id="tips">
-            <div class="section-header"><h2>FREE FIRE <span>TIPS & TRICKS</span></h2></div>
+            <div class="section-header"><h2>FREE FIRE <span>TIPS</span></h2></div>
             <div class="vid-grid" id="tips-list"></div>
         </section>
 
-        <section id="media">
-            <div class="section-header"><h2>SQUAD <span>GALLERY</span></h2></div>
-            <div class="gal-grid" id="gallery-list"></div>
-        </section>
-
-        <section id="contact">
-            <div class="section-header"><h2>FAN <span>WALL</span></h2></div>
-            <div style="max-width:600px; margin:auto;">
-                <input type="text" id="c-name" placeholder="Your Name">
-                <textarea id="c-msg" placeholder="Cheer for the team..."></textarea>
-                <button class="btn-adm" onclick="postComment()">POST MESSAGE</button>
-                <div id="comm-list" style="margin-top:30px; border-top:1px solid #222; padding-top:20px;"></div>
+        <div class="sponsor-marquee">
+            <div class="marquee-track" id="sponsor-marquee-list">
+                <h3 style="color:#333; font-family:var(--font-main);">OUR PROUD SPONSORS</h3>
             </div>
-        </section>
+        </div>
 
         <footer class="main-footer">
             <div class="footer-grid">
@@ -114,23 +108,21 @@
                     <h3>QUICK LINKS</h3>
                     <a href="#hero">Home</a>
                     <a href="#roster">Roster</a>
-                    <a href="#tips">Tips & Tricks</a>
-                    <a href="#media">Gallery</a>
+                    <a href="#achievements">Trophies</a>
                 </div>
                 <div class="f-social">
                     <h3>FOLLOW US</h3>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#" id="link-fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" id="link-yt" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="#" id="link-ig" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="f-bottom"><p>&copy; 2026 Bangla Victorians. All Rights Reserved.</p></div>
         </footer>
     </div>
 
-    <!-- ADMIN VIEW (HIDDEN) -->
+    <!-- ADMIN VIEW -->
     <div id="admin-view" style="display:none; background:#000; min-height:100vh; padding:20px;">
         <div class="adm-nav" style="display:flex; justify-content:space-between; border-bottom:2px solid var(--primary); padding-bottom:15px; margin-bottom:20px;">
             <h2 style="color:white; font-family:var(--font-main);">ADMIN <span>PANEL</span></h2>
@@ -138,72 +130,70 @@
         </div>
 
         <div class="adm-tabs" style="display:flex; gap:10px; overflow-x:auto; margin-bottom:20px;">
-            <button class="tab-btn active" onclick="tab('ros')">ROSTER</button>
-            <button class="tab-btn" onclick="tab('new')">NEWS</button>
-            <button class="tab-btn" onclick="tab('tip')">TIPS</button>
-            <button class="tab-btn" onclick="tab('set')">STATS/BG</button>
-            <button class="tab-btn" onclick="tab('vid')">VIDEOS</button>
-            <button class="tab-btn" onclick="tab('gal')">GALLERY</button>
-            <button class="tab-btn" onclick="tab('fan')">FANS</button>
-            <button class="tab-btn" onclick="tab('spon')">SPONSORS</button>
+            <button class="tab-btn active" onclick="tab('dash')">DASHBOARD</button>
+            <button class="tab-btn" onclick="tab('ros')">ROSTER</button>
+            <button class="tab-btn" onclick="tab('stf')">STAFF</button>
+            <button class="tab-btn" onclick="tab('ach')">TROPHIES</button>
+            <button class="tab-btn" onclick="tab('new')">NEWS/TIPS</button>
+            <button class="tab-btn" onclick="tab('set')">SETTINGS</button>
         </div>
 
-        <!-- Forms (Roster, News, Tips, etc.) -->
-        <div id="ros" class="adm-section active">
-            <div class="form-box">
-                <input type="hidden" id="p-id"><input type="text" id="p-img" placeholder="Full Image URL">
-                <input type="text" id="p-ign" placeholder="IGN"><input type="text" id="p-name" placeholder="Real Name">
-                <input type="text" id="p-role" placeholder="Role"><input type="text" id="p-uid" placeholder="UID">
-                <input type="text" id="p-kd" placeholder="K/D"><input type="text" id="p-win" placeholder="Win Rate">
-                <input type="text" id="p-age" placeholder="Age"><input type="text" id="p-prof" placeholder="Square Profile Pic URL">
-                <textarea id="p-desc" placeholder="Bio"></textarea><input type="text" id="p-seo" placeholder="SEO Desc">
-                <button class="btn-adm" id="p-btn" onclick="savePlayer()">SAVE PLAYER</button>
-                <button onclick="clearForm('p')" style="width:100%; margin-top:5px; background:#222; border:none; color:white; padding:10px; cursor:pointer;">CLEAR</button>
+        <div id="dash" class="adm-section active">
+            <div class="dash-grid">
+                <div class="dash-card"><h3>TOTAL PLAYERS</h3><h1 id="dash-ros">0</h1></div>
+                <div class="dash-card"><h3>TOTAL TROPHIES</h3><h1 id="dash-ach">0</h1></div>
+                <div class="dash-card"><h3>TOTAL NEWS</h3><h1 id="dash-new">0</h1></div>
+                <div class="dash-card"><h3>TOTAL TIPS</h3><h1 id="dash-tip">0</h1></div>
             </div>
-            <div id="adm-roster" style="margin-top:20px;"></div>
         </div>
 
+        <!-- Forms -->
+        <div id="ros" class="adm-section"><div class="form-box"><input type="hidden" id="p-id"><input type="text" id="p-img" placeholder="Image URL"><input type="text" id="p-ign" placeholder="IGN"><input type="text" id="p-name" placeholder="Real Name"><input type="text" id="p-role" placeholder="Role"><input type="text" id="p-uid" placeholder="UID"><input type="text" id="p-kd" placeholder="K/D"><input type="text" id="p-win" placeholder="Win Rate"><input type="text" id="p-age" placeholder="Age"><textarea id="p-desc" placeholder="Bio"></textarea><button class="btn-adm" id="p-btn" onclick="savePlayer()">SAVE PLAYER</button><button onclick="clearForm('p')" style="width:100%; margin-top:5px; background:#222; border:none; color:white; padding:10px;">CLEAR</button></div><div id="adm-roster" style="margin-top:20px;"></div></div>
+        
+        <div id="stf" class="adm-section"><div class="form-box"><input type="hidden" id="s-id"><input type="text" id="s-img" placeholder="Photo URL"><input type="text" id="s-name" placeholder="Name"><input type="text" id="s-role" placeholder="Title"><button class="btn-adm" id="s-btn" onclick="saveStaff()">SAVE STAFF</button></div><div id="adm-staff" style="margin-top:20px;"></div></div>
+
+        <!-- NEW: Trophies Admin -->
+        <div id="ach" class="adm-section">
+            <div class="form-box">
+                <input type="hidden" id="a-id">
+                <input type="text" id="a-img" placeholder="Trophy Image URL (Transparent PNG Best)">
+                <input type="text" id="a-title" placeholder="Tournament Name (e.g. FFIC 2024)">
+                <input type="text" id="a-year" placeholder="Year / Position (e.g. 2024 - Champions)">
+                <input type="text" id="a-desc" placeholder="Prize Money or Short Details">
+                <button class="btn-adm" id="a-btn" onclick="saveTrophy()">ADD TROPHY</button>
+                <button onclick="clearForm('a')" style="width:100%; margin-top:5px; background:#222; border:none; color:white; padding:10px;">CLEAR</button>
+            </div>
+            <div id="adm-trophy" style="margin-top:20px;"></div>
+        </div>
+
+        <!-- NEW: Rich Text Editor for News/Tips -->
         <div id="new" class="adm-section">
-            <div class="form-box">
-                <input type="hidden" id="n-id"><input type="text" id="n-title" placeholder="News Title">
-                <input type="text" id="n-img" placeholder="Image URL"><textarea id="n-desc" placeholder="Content"></textarea>
-                <input type="text" id="n-seo" placeholder="SEO Desc">
-                <button class="btn-adm" id="n-btn" onclick="saveNews()">PUBLISH</button>
+            <h3 style="color:var(--primary); margin-bottom:10px;">Post News</h3>
+            <div class="form-box" style="margin-bottom:30px; border-bottom:1px solid #222; padding-bottom:20px;">
+                <input type="hidden" id="n-id"><input type="text" id="n-title" placeholder="News Title"><input type="text" id="n-img" placeholder="Cover Image URL">
+                <div class="editor-container"><div id="n-desc-editor" style="height: 250px;"></div></div>
+                <button class="btn-adm" id="n-btn" onclick="saveNews()">PUBLISH NEWS</button>
             </div>
-            <div id="adm-news" style="margin-top:20px;"></div>
-        </div>
-
-        <div id="tip" class="adm-section">
+            
+            <h3 style="color:var(--primary); margin-bottom:10px;">Post Tips</h3>
             <div class="form-box">
-                <input type="hidden" id="t-id"><input type="text" id="t-title" placeholder="Tip Title">
-                <input type="text" id="t-img" placeholder="Image URL"><textarea id="t-desc" placeholder="Content"></textarea>
-                <input type="text" id="t-seo" placeholder="SEO Desc">
-                <button class="btn-adm" id="t-btn" onclick="saveTip()">PUBLISH</button>
+                <input type="hidden" id="t-id"><input type="text" id="t-title" placeholder="Tip Title"><input type="text" id="t-img" placeholder="Cover Image URL">
+                <div class="editor-container"><div id="t-desc-editor" style="height: 250px;"></div></div>
+                <button class="btn-adm" id="t-btn" onclick="saveTip()">PUBLISH TIP</button>
             </div>
-            <div id="adm-tips" style="margin-top:20px;"></div>
-        </div>
-
-        <div id="set" class="adm-section">
-            <div class="form-box">
-                <input type="text" id="cfg-bg" placeholder="Hero BG Image URL"><button class="btn-adm" onclick="saveConfig()">SAVE BG</button>
-                <hr style="margin:20px 0; border:1px solid #222;">
-                <input type="text" id="cfg-rank" placeholder="Rank"><input type="text" id="cfg-matches" placeholder="Matches">
-                <input type="text" id="cfg-win" placeholder="Win Rate"><input type="text" id="cfg-titles" placeholder="Titles">
-                <button class="btn-adm" onclick="saveStats()">UPDATE STATS</button>
+            <div style="display:flex; gap:20px; margin-top:20px;">
+                <div style="flex:1"><h4 style="color:white; margin-bottom:10px;">Recent News</h4><div id="adm-news"></div></div>
+                <div style="flex:1"><h4 style="color:white; margin-bottom:10px;">Recent Tips</h4><div id="adm-tips"></div></div>
             </div>
         </div>
 
-        <div id="vid" class="adm-section"><div class="form-box"><input type="text" id="v-title" placeholder="Title"><input type="text" id="v-url" placeholder="YouTube URL"><button class="btn-adm" onclick="saveVideo()">ADD VIDEO</button></div><div id="adm-video" style="margin-top:20px;"></div></div>
-        <div id="gal" class="adm-section"><div class="form-box"><input type="text" id="g-url" placeholder="Image URL"><button class="btn-adm" onclick="saveImage()">ADD IMAGE</button></div><div id="adm-gallery" style="margin-top:20px;"></div></div>
-        <div id="fan" class="adm-section"><div id="adm-fans" style="margin-top:20px;"></div></div>
-        <div id="spon" class="adm-section"><div id="adm-sponsors" style="margin-top:20px;"></div></div>
+        <div id="set" class="adm-section"><div class="form-box" style="margin-bottom:20px;"><h3 style="color:white; margin-bottom:10px;">Global Stats Tracker</h3><input type="text" id="cfg-rank" placeholder="Rank"><input type="text" id="cfg-matches" placeholder="Matches"><input type="text" id="cfg-win" placeholder="Win Rate"><input type="text" id="cfg-titles" placeholder="Total Trophies"><button class="btn-adm" onclick="saveStats()">UPDATE STATS</button></div><div class="form-box" style="margin-bottom:20px;"><h3 style="color:white; margin-bottom:10px;">Social Media Links</h3><input type="text" id="cfg-fb" placeholder="Facebook URL"><input type="text" id="cfg-yt" placeholder="YouTube URL"><input type="text" id="cfg-ig" placeholder="Instagram URL"><button class="btn-adm" onclick="saveSocial()">UPDATE SOCIALS</button></div><div class="form-box"><h3 style="color:white; margin-bottom:10px;">Add Sponsor Logo</h3><input type="text" id="sp-url" placeholder="Logo URL"><button class="btn-adm" onclick="saveSponsorLogo()">ADD LOGO</button><div id="adm-sponsors" style="margin-top:15px; display:flex; gap:10px; flex-wrap:wrap;"></div></div></div>
     </div>
 
-    <!-- MODALS -->
     <div id="login-modal" class="modal"><div class="modal-box"><h2>ADMIN LOGIN</h2><input type="email" id="email" placeholder="Email"><input type="password" id="pass" placeholder="Password"><button class="btn-adm" onclick="login()">ENTER</button><button onclick="toggleLogin()" style="background:none; border:none; color:#666; margin-top:10px; cursor:pointer;">Close</button></div></div>
-    <div id="sponsor-modal" class="modal"><div class="modal-box"><h2>SPONSORSHIP</h2><input type="text" id="s-name" placeholder="Brand Name"><input type="text" id="s-wp" placeholder="WhatsApp Number"><textarea id="s-desc" placeholder="Details..."></textarea><button class="btn-adm" onclick="submitSponsor()">SUBMIT</button><button onclick="toggleSponsor()" style="background:none; border:none; color:#666; margin-top:10px; cursor:pointer;">Close</button></div></div>
-    <div id="gallery-popup" class="modal"><div class="modal-box" style="background:none; border:none; max-width:800px;"><img id="gm-img" src="" style="width:100%; border-radius:10px;"><button onclick="document.getElementById('gallery-popup').style.display='none'" style="color:white; margin-top:10px; background:none; border:none; cursor:pointer;">Close</button></div></div>
-
+    
+    <!-- Quill JS Library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script type="module" src="script.js"></script>
 </body>
 </html>
