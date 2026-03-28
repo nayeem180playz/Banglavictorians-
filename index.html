@@ -3,10 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
     <title>Bangla Victorians - Official Free Fire Esports Site</title>
+    <meta name="title" content="Bangla Victorians - Official Free Fire Esports Site">
+    <meta name="description" content="Welcome to the home of Bangla Victorians. A premier Free Fire e-sports squad based in Bangladesh dedicated to precision, teamwork, and absolute victory.">
+    <meta name="keywords" content="Bangla Victorians, Free Fire, Esports Bangladesh, Free Fire Squad, FF Tournament, Free Fire Tips, BD Gaming, E-sports, Garena Free Fire">
+    <meta name="author" content="Bangla Victorians">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://victorians.netlify.app/">
+    <meta property="og:title" content="Bangla Victorians - Official Free Fire Esports Site">
+    <meta property="og:description" content="A premier Free Fire e-sports squad based in Bangladesh. We play with passion, teamwork, and an absolute winning mindset.">
+    <!-- নিচের logo.png এর জায়গায় চাইলে আপনারা একটি বড় ব্যানারের লিংক দিতে পারেন -->
+    <meta property="og:image" content="https://victorians.netlify.app/logo.png">
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://victorians.netlify.app/">
+    <meta property="twitter:title" content="Bangla Victorians - Official Free Fire Esports Site">
+    <meta property="twitter:description" content="A premier Free Fire e-sports squad based in Bangladesh.">
+    <meta property="twitter:image" content="https://victorians.netlify.app/logo.png">
+
+    <!-- Fonts & CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Teko:wght@400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Quill.js Rich Text Editor CSS -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -70,7 +93,6 @@
             <div class="roster-grid" id="staff-list"></div>
         </section>
 
-        <!-- NEW: Trophy Cabinet -->
         <section id="achievements">
             <div class="section-header"><h2>TROPHY <span>CABINET</span></h2></div>
             <div class="trophy-grid" id="trophy-list"></div>
@@ -152,7 +174,6 @@
         
         <div id="stf" class="adm-section"><div class="form-box"><input type="hidden" id="s-id"><input type="text" id="s-img" placeholder="Photo URL"><input type="text" id="s-name" placeholder="Name"><input type="text" id="s-role" placeholder="Title"><button class="btn-adm" id="s-btn" onclick="saveStaff()">SAVE STAFF</button></div><div id="adm-staff" style="margin-top:20px;"></div></div>
 
-        <!-- NEW: Trophies Admin -->
         <div id="ach" class="adm-section">
             <div class="form-box">
                 <input type="hidden" id="a-id">
@@ -166,7 +187,6 @@
             <div id="adm-trophy" style="margin-top:20px;"></div>
         </div>
 
-        <!-- NEW: Rich Text Editor for News/Tips -->
         <div id="new" class="adm-section">
             <h3 style="color:var(--primary); margin-bottom:10px;">Post News</h3>
             <div class="form-box" style="margin-bottom:30px; border-bottom:1px solid #222; padding-bottom:20px;">
@@ -192,7 +212,6 @@
 
     <div id="login-modal" class="modal"><div class="modal-box"><h2>ADMIN LOGIN</h2><input type="email" id="email" placeholder="Email"><input type="password" id="pass" placeholder="Password"><button class="btn-adm" onclick="login()">ENTER</button><button onclick="toggleLogin()" style="background:none; border:none; color:#666; margin-top:10px; cursor:pointer;">Close</button></div></div>
     
-    <!-- Quill JS Library -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script type="module" src="script.js"></script>
 </body>
